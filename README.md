@@ -1,3 +1,3 @@
 # Bingo
 
-Hello Test
+Test message
