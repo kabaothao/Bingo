@@ -15,6 +15,10 @@ Game.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
     }
   },
   {
