@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const sequelize = require("../config/connection");
 
 class Game extends Model {}
 
@@ -15,18 +15,14 @@ Game.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
-    }
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'game',
+    modelName: "game",
   }
 );
 
