@@ -1,0 +1,18 @@
+#f3e3cc
+#d64a35
+#503a20
+
+:root {
+  --main: #f3e3cc;
+--secondary:#503a20;
+--third:#d64a35;
+
+}
+
+* {
+    border: 1px solid black;
+}
+
+body {
+    background-color: var(--main)
+}
