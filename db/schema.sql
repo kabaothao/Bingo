@@ -1,2 +1,10 @@
-DROP DATABASE IF EXISTS user_db;
-CREATE DATABASE user_db;
+DROP DATABASE IF EXISTS bingo_db;
+CREATE DATABASE bingo_db;
+
+USE bingo_db;
+
+
+CREATE table userId;
+
+
+Testing
