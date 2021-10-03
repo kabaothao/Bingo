@@ -9,8 +9,89 @@
     <link rel="stylesheet" href="../../public/css/style.css"/>
   </head>
 
-  <body>
-    <header class="flex justify-center">
+  <body style="background-color: var(--main)">
+    <div class="flex justify-center font-sans text-8xl font-extrabold">
+      BINGO
+    </div>
+    
+<div class="grid grid-cols-3 gap-4 ">
+  <div class="flex justify-center font-sans text-8xl font-extrabold">
+   
+  </div>
+  
+  <div class="bg-fuchsia-500  rounded-md  row-span-3 flex items-center justify-center text-white text-2xl font-extrabold bg-blue-900">
+    <form class='mr-8' id="signup">
+      <h2>SignUp</h2>
+      <label for="newUsername">UserName</label><br>
+      <input class="bg-gray-200 focus:bg-white text-black" type='text' id="newUsername" name='newUsername'><br>
+      <label for="Crpswd">Create Password</label><br>
+      <input class="bg-gray-200 focus:bg-white text-black" type="password" id="Crpswd" name="Crpswd"><br>
+      <label for="repswd">ReType Password</label><br>
+      <input class="bg-gray-200 focus:bg-white text-black" type="password" id="repswd" name="repswd"><br>
+    <button type="submit" id="signup" class="bg-red-600 hover:bg-red-700 text-white" id="create-btn">Create</button>
+
+    </form>
+    <form id="login">
+      <h2>Login</h2>
+      <label for="username">UserName</label><br>
+      <input class="bg-gray-200 focus:bg-white text-black" type='text' id="usernmae" name='username'><br>
+      <label for="pswd">Password</label><br> 
+      <input class="bg-gray-200 focus:bg-white text-black" type="password" id="pswd" name="pswd"><br>
+    <button type="submit" id="login" class="bg-red-600 hover:bg-red-700 text-white" id="login">Login</button>
+
+    </form>
+
+  </div>
+  <div class="flex-shrink"></div>
+  <button class="bg-fuchsia-500 h-12 rounded-md flex items-center justify-center text-white text-2xl font-extrabold bg-yellow-800 hover:bg-yellow-900" >Login/Logout</button>
+
+  <div class="flex-shrink"></div>
+  <div class="flex-shrink"></div>
+  <div class="flex-shrink"></div>
+  <div class="flex-shrink"></div>
+  <button class="flex-grow bg-fuchsia-500 h-12 rounded-md flex items-center justify-center text-white text-2xl font-extrabold bg-red-600 hover:bg-red-700">Join Game</button>
+
+  <div></div>
+  <div></div>
+  <button class="bg-fuchsia-500 h-12 rounded-md flex items-center justify-center text-white text-2xl font-extrabold bg-red-600 hover:bg-red-700">Start Game</button>
+
+  <div></div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <header class="flex justify-center">
     <img class='h-20' src='../../public/assets/bingo-title.png'>
     
   </header>
@@ -23,8 +104,8 @@
         <input class="bg-gray-200 focus:bg-white" type="password" id="Crpswd" name="Crpswd"><br>
         <label for="repswd">ReType Password</label><br>
         <input class="bg-gray-200 focus:bg-white" type="password" id="repswd" name="repswd"><br>
-        <button class="bg-red-600 hover:bg-red-700 text-white" id="create-btn">Create</button>
       </form>
+      <button type="submit" id="signup" class="bg-red-600 hover:bg-red-700 text-white" id="create-btn">Create</button>
 
       <form id="login">
         <h2>Login</h2>
@@ -32,10 +113,18 @@
         <input class="bg-gray-200 focus:bg-white" type='text' id="usernmae" name='username'><br>
         <label for="pswd">Password</label><br> 
         <input class="bg-gray-200 focus:bg-white " type="password" id="pswd" name="pswd"><br>
-        <button class="bg-red-600 hover:bg-red-700 text-white" id="login">Login</button>
       </form>
-    </div>
+      <button type="submit" id="login" class="bg-red-600 hover:bg-red-700 text-white" id="login">Login</button>
 
+    </div>
+    <div class="justify-items-center">
+      <button type="button>
+        Join Game!
+      </button><br>
+      <button type="button>
+        Start Game!
+      </button>
+    </div> -->
   </body>
 
 </html>

@@ -1,15 +1,15 @@
 :root {
   --main: #f3e3cc;
---secondary:#503a20;
+--sec:#503a20;
 --third:#d64a35;
 
 }
 
-* {
+/* * {
     border: 1px solid black;
-}
+} */
 
 body {
-    background-color: var(--main)
+    
 }
 
