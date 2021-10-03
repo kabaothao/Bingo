@@ -16,7 +16,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,10 +27,10 @@ User.init(
         len: [8],
       },
     },
-    game_id: {
+    room_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "game",
+        model: "game_room",
         key: "id",
       },
     },
