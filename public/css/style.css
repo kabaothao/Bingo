@@ -10,3 +10,85 @@
 } */
 
 
+
+/* card styling */
+
+.play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.clear {
+  width: 100%;
+  clear: both;
+}
+
+.card {
+  float: left;
+  width: 520px;
+  height: auto;
+  /* background-color: #446444; */
+  background-color: var(--third);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.play button {
+  float: left;
+  font-size: 2rem;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  outline-color: var(--third);
+}
+
+.headers > div {
+  float: left;
+  width: 100px;
+  text-align: center;
+}
+
+.headers > div span {
+  font-size: 42px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.column {
+  float: left;
+  width: 100px;
+  text-align: center;
+}
+
+.number {
+  padding: 20px 0;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.number span {
+  color: rgb(39, 15, 1);
+  font-size: 32px;
+}
+
+.number span:hover {
+  text-shadow: 0 0 5px rgba(39, 15, 1, 0.5);
+}
+
+.bingo {
+  float: left;
+  width: 200px;
+  height: auto;
+  font-weight: bolder;
+  color: #fff;
+  font-family: monospace;
+  /* background-color: #446444; */
+  background-color: var(--third);
+  border-radius: 10px;
+  padding: 10px;
+}
+/* card styling ends */
+
