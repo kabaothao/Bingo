@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
-class Game extends Model {}
+class GameRoom extends Model {}
 
-Game.init(
+GameRoom.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,8 +12,20 @@ Game.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    balls_drawn: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    is_gameover: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    winner_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    admin_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
@@ -22,8 +34,8 @@ Game.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "game",
+    modelName: "game_room",
   }
 );
 
-module.exports = Game;
+module.exports = GameRoom;

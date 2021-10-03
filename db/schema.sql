@@ -5,12 +5,12 @@ CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR (255),
     password VARCHAR (255),
+    room_id INT,
+    FOREIGN KEY room_id REFERENCES game_room(id)
 )
 
-CREATE TABLE gameRoom (
-    id INT AUTO_INCREMENT NOT NULL,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES user(id),
+CREATE TABLE game_room (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     balls_drawn VARCHAR,
     is_gameover BIT,
     winner_id INT,
