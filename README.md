@@ -52,7 +52,6 @@ When a player has placed 5 markers in a row (horizontally, vertically or diagona
   * ![demo_still](public/assets/images/demo.png)
 
   
-
 ## Contributors
 
 Alena Rehberger;
