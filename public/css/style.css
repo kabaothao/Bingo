@@ -1,15 +1,24 @@
 :root {
-  --main: #f3e3cc;
---sec:#503a20;
---third:#d64a35;
+  --main: #F4D8CD;
+--sec:#3A2E39;
+--third:#F15152;
+--fourth:#1E555C;
+
 
 }
 
-* {
-    border: 1px solid black;
+.main{
+  background-color:var(--main) ;
 }
-
-
+.sec {
+  background-color:var(--sec) ;
+}
+.third {
+  background-color:var(--third) ;
+}
+.fourth{
+  background-color:var(--fourth) ;
+}
 /* card styling */
 
 .play {
