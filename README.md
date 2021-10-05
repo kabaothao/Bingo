@@ -54,11 +54,11 @@ When a player has placed 5 markers in a row (horizontally, vertically or diagona
   
 ## Contributors
 
-Alena Rehberger;
-Chris O'Connor;
-Jesse Erickson;
-Jose Avalos;
-Kabao Thao
+* Alena Rehberger
+* Chris O'Connor
+* Jesse Erickson
+* Jose Avalos
+* Kabao Thao
 
 ## Credits
 
@@ -66,11 +66,11 @@ Kabao Thao
 ## Contacts
 
   * Find Us On GitHub: 
-  https://github.com/kabaothao
-  https://github.com/clerick44
-  https://github.com/OConnor-Chris
-  https://github.com/pepsi1397
-  https://github.com/AlenaReh
+   - https://github.com/kabaothao
+   - https://github.com/clerick44
+   - https://github.com/OConnor-Chris
+   - https://github.com/pepsi1397
+   - https://github.com/AlenaReh
 
   * Connect With Us On Linkedin: 
-  https://www.linkedin.com/in/alena-rehberger/
+   - https://www.linkedin.com/in/alena-rehberger/
