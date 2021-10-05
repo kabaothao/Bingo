@@ -10,3 +10,6 @@ User.belongsTo(GameRoom, {
 });
 
 module.exports = { User, GameRoom };
+
+
+
