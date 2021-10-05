@@ -38,3 +38,5 @@ const isDuplicate = (rowNumbers) => {
 generateCardNumbers();
 
 module.exports = generateCardNumbers;
+
+//dumb?
