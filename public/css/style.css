@@ -1,23 +1,21 @@
 :root {
-  --main: #F4D8CD;
---sec:#3A2E39;
---third:#F15152;
---fourth:#1E555C;
-
-
+  --main: #f4d8cd;
+  --sec: #3a2e39;
+  --third: #f15152;
+  --fourth: #1e555c;
 }
 
-.main{
-  background-color:var(--main) ;
+.main {
+  background-color: var(--main);
 }
 .sec {
-  background-color:var(--sec) ;
+  background-color: var(--sec);
 }
 .third {
-  background-color:var(--third) ;
+  background-color: var(--third);
 }
-.fourth{
-  background-color:var(--fourth) ;
+.fourth {
+  background-color: var(--fourth);
 }
 /* card styling */
 
@@ -25,7 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 .clear {
   width: 100%;
@@ -65,14 +62,15 @@
   font-weight: bold;
 }
 
-.column {
+/* .column {
   float: left;
   width: 100px;
   text-align: center;
-}
+} */
 
 .number {
   padding: 20px 0;
+  width: 100px;
   border: 1px solid #000;
   background-color: #fff;
 }
@@ -85,6 +83,10 @@
 .number span:hover {
   text-shadow: 0 0 5px rgba(39, 15, 1, 0.5);
 }
+
+/* .numberField {
+  display: flex;
+} */
 
 .bingo {
   float: left;
