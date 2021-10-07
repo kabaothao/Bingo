@@ -40,6 +40,6 @@ function genNum() {
     $(".col-13").html("<span>FREE</span>");
   
     $('.number').click(function() {
-      $(this).html('<span>X</span>');
+      $(this).addClass('fourth text-white');
     });
   });
