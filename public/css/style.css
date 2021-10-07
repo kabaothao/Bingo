@@ -62,11 +62,11 @@
   font-weight: bold;
 }
 
-/* .column {
+.column {
   float: left;
   width: 100px;
   text-align: center;
-} */
+}
 
 .number {
   padding: 20px 0;
