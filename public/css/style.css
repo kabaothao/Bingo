@@ -20,7 +20,7 @@
 
 .card {
   float: left;
-  width: 40rem;
+  width: 100vw;
   height: auto;
   /* background-color: #446444; */
   background-color: var(--third);

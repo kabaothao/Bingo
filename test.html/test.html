@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo is the Name-O!</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/style.css">
+  </head>
+<body style="background-color: var(--main)">
+    <div class="flex justify-center font-sans text-8xl font-extrabold">
+      BINGO
+    </div>
+        
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-8">
+  <button class="bg-fuchsia-500 h-12 rounded-md flex items-center justify-center text-white text-2xl font-extrabold lg:w-2/3 lg:place-self-center sec">Logout</button>
+    <div class="hidden lg:block"></div>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+  <div class="bg-fuchsia-500 justify-center rounded-md block text-white text-2xl font-extrabold fourth lg:flex">
+  <form>
+     <label for="lobbyid">Enter Lobby ID</label><br>
+      <input class="bg-gray-200 focus:bg-white text-black" type="text" id="lobbyid" name="lobbyid"><br>
+      <button class="bg-fuchsia-500 h-12 w-full rounded-md flex items-center justify-center text-white text-2xl font-extrabold third hover:bg-red-700">Join Game</button>
+  </form>
+  </div>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+  <button class="bg-fuchsia-500 h-12 rounded-md flex items-center justify-center text-white text-2xl font-extrabold third hover:bg-red-700">Start
+    Game</button>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+  <div class="hidden lg:block "></div>
+</div>
+    
+    
+   <script src="/js/login.js"></script>
+  
+</body>
+</html>
