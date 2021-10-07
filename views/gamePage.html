@@ -7,22 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Bingo is the Name-O!</title>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../public/css/style.css" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
 
 </head>
 
-<body>
-  <div id="test">test</div>
+<body style="background-color: var(--main)">
   <div class="flex justify-center font-sans text-5xl font-extrabold text-white  ">
     <header class="sec p-8 fixed" id="bingoCont">B4</header>
   </div>
   <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
     <div>
     </div>
-    <div class="bg-fuchsia-500 h-rounded-md place-self-end text-white text-5xl font-extrabold fourth lg:place-self-center">
+    <div class="bg-fuchsia-500 rounded-md place-self-end text-white text-5xl font-extrabold fourth lg:place-self-center">
       <h2>Timer</h2>
       <div id="timer text-white text-2xl font-extrabold fourth">00:00</div>
     </div>
@@ -33,7 +32,7 @@
     <div
       class="bg-fuchsia-500 place-self-center  rounded-md items-center justify-center text-white text-2xl font-extrabold third">
       <div class="clear"></div>
-      <div id="card1" class="card">
+      <div id="card" class="card">
         <div class="headers">
           <div><span>B</span></div>
           <div><span>I</span></div>
@@ -42,7 +41,7 @@
           <div><span>O</span></div>
         </div>
         <div id="numberField1" class="numberField grid grid-cols-5 gap-2"></div>
-        <!-- <div class="column 1">
+        <div class="column 1">
         </div>
         <div class="column 2">
         </div>
@@ -51,7 +50,7 @@
         <div class="column 4">
         </div>
         <div class="column 5">
-        </div> -->
+        </div>
       </div>
       <div class="temp"></div>
     </div>
@@ -67,7 +66,7 @@
           <div><span>O</span></div>
         </div>
         <div id="numberField2" class="numberField"></div>
-        <!-- <div class="column 1">
+        <div class="column 1">
         </div>
         <div class="column 2">
         </div>
@@ -76,7 +75,7 @@
         <div class="column 4">
         </div>
         <div class="column 5">
-        </div> -->
+        </div>
       </div>
       <div class="temp"></div>
     </div>
@@ -92,7 +91,7 @@
           <div><span>O</span></div>
         </div>
         <div id="numberField3" class="numberField"></div>
-        <!-- <div class="column 1">
+        <div class="column 1">
         </div>
         <div class="column 2">
         </div>
@@ -101,7 +100,7 @@
         <div class="column 4">
         </div>
         <div class="column 5">
-        </div> -->
+        </div>
       </div>
       <div class="temp"></div>
     </div>
@@ -117,7 +116,7 @@
           <div><span>O</span></div>
         </div>
         <div id="numberField4"class="numberField"></div>
-        <!-- <div class="column 1">
+        <div class="column 1">
         </div>
         <div class="column 2">
         </div>
@@ -126,7 +125,7 @@
         <div class="column 4">
         </div>
         <div class="column 5">
-        </div> -->
+        </div>
       </div>
       <div class="temp"></div>
     </div>
@@ -134,7 +133,7 @@
   <button id="bButton" class="w-64 third text-white">B I N G O !</button>
   </div>
   <!-- js link -->
-  <script src="../public/js/generateCard.js"></script>
+  <script src="../public/js/generateCard-old.js"></script>
 
 </body>
 

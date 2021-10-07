@@ -10,7 +10,7 @@ $("#bButton").click(() => {
   console.log(cardNumbers);
   cardNumbers.forEach((e, index) => {
     console.log(index);
-    $("#numberField1").append("<div class='number'>" + e + "</div>");
+    $("#card1").append("<div class='number col-" + index + "'><span>" + e + "</span></div>");
   });
 });
 
