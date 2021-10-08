@@ -19,10 +19,6 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-// app.get('/', (req, res) => {
-//   res.render('homepage');
-// });
-
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('chat message', (msg) => {
@@ -34,8 +30,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
 });
 // end of socket.io nonsense
 
@@ -60,6 +56,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
-});
+// sequelize.sync({ force: false }).then(() => {
+//   app.listen(PORT, () => console.log("Now listening"));
+// });
