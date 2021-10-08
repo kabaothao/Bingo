@@ -3,7 +3,7 @@ var cardNumbers = [];
 $("#button").click(() => {
   // event.stopPropagation();
   console.log("Im in buildCard");
-  // $("numberField").empty();
+  $(".column").empty();
 
   for (let i = 1; i < 5; i++) {
     let cardNumbers = generateCardNumbers();

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, GameRoom } = require("../../models");
 
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   console.log("=====USERS ROUTE=====");
   try {
     console.log("??????????USER IS TRYIN TO SIGN UP???????????");
@@ -43,7 +43,6 @@ router.post("/login", async (req, res) => {
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.logged_in = true;
-
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
