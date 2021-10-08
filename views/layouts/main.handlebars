@@ -14,8 +14,13 @@
   </div>
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-8">
 
+
+
+{{#if logged_in}}
+ <script src="/js/logout.js"></script>
+{{/if}}
       {{{body}}}
   </div>
   </body>
- <script src="/js/login.js"></script>
+
 </html>
