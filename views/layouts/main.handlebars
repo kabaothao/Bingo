@@ -1,26 +1,31 @@
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bingo is the Name-O!</title>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css"/>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bingo is the Name-O!</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<body style="background-color: var(--main)">
-  <div class="flex justify-center font-sans text-8xl font-extrabold">
-    BINGO
-  </div>
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-8">
+  <body style="background-color: var(--main)">
+    <div class="flex justify-center font-sans text-8xl font-extrabold">
+      BINGO
+    </div>
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-8">
 
+      {{!-- <script src="/js/logout.js"></script> --}}
 
+      {{!-- {{#if logged_in}} --}}
 
-{{#if logged_in}}
- <script src="/js/logout.js"></script>
-{{/if}}
-      {{{body}}}
-  </div>
+        {{{body}}}
+
+      {{!-- {{/if}} --}}
+    </div>
+
   </body>
 
 </html>
