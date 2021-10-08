@@ -5,18 +5,7 @@
   --fourth: #1e555c;
 }
 
-.main {
-  background-color: var(--main);
-}
-.sec {
-  background-color: var(--sec);
-}
-.third {
-  background-color: var(--third);
-}
-.fourth {
-  background-color: var(--fourth);
-}
+
 /* card styling */
 
 .play {
@@ -31,7 +20,7 @@
 
 .card {
   float: left;
-  width: 520px;
+  width: 100vw;
   height: auto;
   /* background-color: #446444; */
   background-color: var(--third);
@@ -51,26 +40,26 @@
 }
 
 .headers > div {
-  float: left;
-  width: 100px;
+  float:left;
+  width: 20%;
   text-align: center;
 }
 
-.headers > div span {
+.headers div span {
   font-size: 42px;
   color: #fff;
   font-weight: bold;
 }
 
-/* .column {
+.column {
   float: left;
-  width: 100px;
+  width: 20%;
   text-align: center;
-} */
+}
 
 .number {
   padding: 20px 0;
-  width: 100px;
+  width: 100%;
   border: 1px solid #000;
   background-color: #fff;
 }
@@ -84,9 +73,9 @@
   text-shadow: 0 0 5px rgba(39, 15, 1, 0.5);
 }
 
-/* .numberField {
+.numberField {
   display: flex;
-} */
+}
 
 .bingo {
   float: left;
@@ -95,9 +84,25 @@
   font-weight: bolder;
   color: #fff;
   font-family: monospace;
-  /* background-color: #446444; */
+  background-color: #446444;
   background-color: var(--third);
   border-radius: 10px;
   padding: 10px;
 }
 /* card styling ends */
+.main {
+  background-color: var(--main);
+}
+.sec {
+  background-color: var(--sec);
+}
+.third {
+  background-color: var(--third);
+}
+.fourth {
+  background-color: var(--fourth);
+}
+
+@media only screen and (max-width: 600px) {
+
+}
