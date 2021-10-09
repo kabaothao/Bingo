@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 // const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ });
-const bingo = require("./bingo");
+// const bingo = require("./bingo");
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -21,7 +21,7 @@ const io = new Server(server);
 
 io.sockets.on("connection", (socket) => {
   console.log("a user connected");
-  bingo.initGame(io, socket);
+  // bingo.initGame(io, socket);
   socket.on("chat message", (msg) => {
     socket.emit("chat message", msg);
     console.log("message: " + msg);
