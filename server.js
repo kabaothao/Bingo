@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 // const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ });
-
+const bingo = require("./bingo");
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
