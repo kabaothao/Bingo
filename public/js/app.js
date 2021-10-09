@@ -1,7 +1,7 @@
 var cardNumbers = [];
 var allCards = [];
 
-$("#generateCardBtn").click(() => {
+$("#button").click(() => {
   // event.stopPropagation();
   console.log("Im in buildCard");
   $(".column").empty();
@@ -101,6 +101,6 @@ const generateCardNumbers = () => {
     // console.log(cardNumbers);
   }
   allCards.push(cardNumbers);
-  // console.log(all);
+  console.log(all);
   return cardNumbers;
 };

@@ -5,7 +5,6 @@
   --fourth: #1e555c;
 }
 
-
 /* card styling */
 
 .play {
@@ -40,7 +39,7 @@
 }
 
 .headers > div {
-  float:left;
+  float: left;
   width: 20%;
   text-align: center;
 }
@@ -70,7 +69,11 @@
 }
 
 .number span:hover {
-  text-shadow: 0 0 5px rgba(39, 15, 1, 0.5);
+  text-shadow: 0 0 10px rgba(39, 15, 1, 0.5);
+}
+
+.dobbed {
+  background-color: rgba(255, 84, 78, 0.795);
 }
 
 .numberField {
@@ -103,11 +106,17 @@
   background-color: var(--fourth);
 }
 
-@media only screen and (max-width: 768px) {
-.card {
-width: 90vw;
+
+@media only screen and (max-width: 1024px) {
+  .card {
+    width: 100vw;
+  }
 }
 
+@media only screen and (max-width: 768px) {
+  .card {
+  width: 90vw;
+  }
 }
 
 @media only screen and (max-width: 1930px) {
@@ -115,3 +124,4 @@ width: 90vw;
     display: flex;
   }
 }
+
