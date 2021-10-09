@@ -106,8 +106,22 @@
   background-color: var(--fourth);
 }
 
+
 @media only screen and (max-width: 1024px) {
   .card {
     width: 100vw;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .card {
+  width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 1930px) {
+  #form {
+    display: flex;
+  }
+}
+
