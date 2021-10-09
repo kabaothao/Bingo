@@ -23,7 +23,7 @@ router.get("/game", withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({});
     const users = userData.map((project) => project.get({ plain: true }));
-    res.render("bingo_cards", {title:"game page",layout:"game_page"}, {
+    res.render("bingo_cards", {
       // Pass the logged in flag to the template
       logged_in: req.session.logged_in,
     });
