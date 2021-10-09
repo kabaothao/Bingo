@@ -20,13 +20,13 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log('a user connected on ' + socket.id);
   socket.on('chat message', (msg) => {
     socket.emit('chat message', msg);
     console.log('message: ' + msg);
   });
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('user disconnected from ' + socket.id);
   });
 });
 
