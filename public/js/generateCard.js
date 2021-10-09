@@ -1,6 +1,6 @@
 var cardNumbers = [];
 
-$("#button").click(() => {
+$("#generateCardBtn").click(() => {
   // event.stopPropagation();
   console.log("Im in buildCard");
   $(".column").empty();
@@ -88,7 +88,7 @@ const generateCardNumbers = () => {
     rowNumbers.push(Math.floor(Math.random() * (15 - 1)) + 1);
     rowNumbers.push(Math.floor(Math.random() * (30 - 16)) + 16);
     if (i === 2) {
-      rowNumbers.push("FREE");
+      rowNumbers.push("&#127920");
     } else {
       rowNumbers.push(Math.floor(Math.random() * (45 - 31)) + 31);
     }
