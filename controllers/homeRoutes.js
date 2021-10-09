@@ -8,7 +8,7 @@ router.get("/homepage", withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({});
     const users = userData.map((project) => project.get({ plain: true }));
-    res.render("game_page", {
+    res.render("homePage", {
       // Pass the logged in flag to the template
       logged_in: req.session.logged_in,
     });
