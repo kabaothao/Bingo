@@ -63,28 +63,10 @@ function hostPrepareGame(gameId) {
  * @param gameId The game ID / room ID
  */
 function hostStartGame(gameId) {
-  console.log("Game Started.");
-  sendWord(0, gameId);
-}
+    console.log('Game Started!');
+    sendWord(0,gameId);
+};
 
-/**
- * A player answered correctly. Time for the next word.
- * @param data Sent from the client. Contains the current round and gameId (room)
- */
-function hostNextRound(data) {
-  if (data.round < wordPool.length) {
-    // Send a new set of words back to the host and players.
-    sendWord(data.round, data.gameId);
-  } else {
-    // If the current round exceeds the number of words, send the 'gameOver' event.
-    io.sockets.in(data.gameId).emit("gameOver", data);
-  }
-}
-/* *****************************
- *                           *
- *     PLAYER FUNCTIONS      *
- *                           *
- ***************************** */
 
 /**
  * A player clicked the 'START GAME' button.
@@ -92,70 +74,72 @@ function hostNextRound(data) {
  * the gameId entered by the player.
  * @param data Contains data entered via player's input - playerName and gameId.
  */
-function playerJoinGame(data) {
-  //console.log('Player ' + data.playerName + 'attempting to join game: ' + data.gameId );
+ function playerJoinGame(data) {
+    //console.log('Player ' + data.playerName + 'attempting to join game: ' + data.gameId );
 
-  // A reference to the player's Socket.IO socket object
-  var sock = this;
+    // A reference to the player's Socket.IO socket object
+    var sock = this;
 
-  // Look up the room ID in the Socket.IO manager object.
-  var room = gameSocket.manager.rooms["/" + data.gameId];
+    // Look up the room ID in the Socket.IO manager object.
+    var room = gameSocket.manager.rooms["/" + data.gameId];
 
-  // If the room exists...
-  if (room != undefined) {
-    // attach the socket id to the data object.
-    data.mySocketId = sock.id;
+    // If the room exists...
+    if( room != undefined ){
+        // attach the socket id to the data object.
+        data.mySocketId = sock.id;
 
-    // Join the room
-    sock.join(data.gameId);
+        // Join the room
+        sock.join(data.gameId);
 
-    //console.log('Player ' + data.playerName + ' joining game: ' + data.gameId );
+        //console.log('Player ' + data.playerName + ' joining game: ' + data.gameId );
 
-    // Emit an event notifying the clients that the player has joined the room.
-    io.sockets.in(data.gameId).emit("playerJoinedRoom", data);
-  } else {
-    // Otherwise, send an error message back to the player.
-    this.emit("error", { message: "This room does not exist." });
-  }
+        // Emit an event notifying the clients that the player has joined the room.
+        io.sockets.in(data.gameId).emit('playerJoinedRoom', data);
+
+    } else {
+        // Otherwise, send an error message back to the player.
+        this.emit('error',{message: "This room does not exist."} );
+    }
 }
 
-/**
- * A player has tapped a word in the word list.
- * @param data gameId
- */
-function playerAnswer(data) {
-  // console.log('Player ID: ' + data.playerId + ' answered a question with: ' + data.answer);
 
-  // The player's answer is attached to the data object.  \
-  // Emit an event with the answer so it can be checked by the 'Host'
-  io.sockets.in(data.gameId).emit("hostCheckAnswer", data);
-}
 
-/**
- * The game is over, and a player has clicked a button to restart the game.
- * @param data
- */
-function playerRestart(data) {
-  // console.log('Player: ' + data.playerName + ' ready for new game.');
 
-  // Emit the player's data back to the clients in the game room.
-  data.playerId = this.id;
-  io.sockets.in(data.gameId).emit("playerJoinedRoom", data);
-}
 
-/* *************************
- *                       *
- *      GAME LOGIC       *
- *                       *
- ************************* */
+//  example of a listener 
+// gameSocket.on('hostCreateNewGame', hostCreateNewGame); 
 
-/**
- * Get a word for the host, and a list of words for the player.
- *
- * @param wordPoolIndex
- * @param gameId The room identifier
- */
-function sendWord(wordPoolIndex, gameId) {
-  var data = getWordData(wordPoolIndex);
-  io.sockets.in(gameId).emit("newWordData", data);
-}
+//  using an Express route to request the library files from the server 
+{/* <script src="/socket.io/socket.io.js"></script> */}
+
+
+//<script type=text/template"> 
+
+// Enclosing function 
+// function() {
+//     IO { 
+//     //  All code related to Socket.IO connections goes here. 
+//     IO.socket = io.connect();
+//     IO.socket.on('playerJoinedRoom', IO.playerJoinedRoom );
+//     }
+
+//     App {
+//     // Generic game logic code.
+
+//     Host {
+//     // Game logic for the 'Host' (big) screen.
+//     }
+
+//     Player {
+//     // Game logic specific to 'Player' screens.
+//     }
+//     }       
+// } 
+
+IO.init()
+App.init() 
+
+
+// create click handlers for the START and JOIN buttons that appear on the title screen.
+App.$doc.on('click', '#btnStartGame', App.Host.onCreateClick);
+App.$doc.on('click', '#btnJoinGame', App.Player.onJoinClick);
