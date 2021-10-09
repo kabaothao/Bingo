@@ -1,4 +1,5 @@
 var cardNumbers = [];
+var allCards = [];
 
 $("#button").click(() => {
   // event.stopPropagation();
@@ -8,6 +9,7 @@ $("#button").click(() => {
   for (let i = 1; i < 5; i++) {
     let cardNumbers = generateCardNumbers();
     // console.log(cardNumbers);
+
     cardNumbers.forEach((e, index) => {
       console.log(index);
       switch (index) {
@@ -17,7 +19,6 @@ $("#button").click(() => {
         case 15:
         case 20:
           console.log("#A" + i + "1");
-          // $("#A" + i + "1").append("");
           $("#B" + i + "1").append(
             "<div class='number col-" + index + "'><span>" + e + "</span></div>"
           );
@@ -61,9 +62,6 @@ $("#button").click(() => {
         default:
           console.log("At default");
       }
-      // $("#numberField" + i).append(
-      //   "<div class='number col-" + index + "'><span>" + e + "</span></div>"
-      // );
     });
   }
 });
@@ -102,5 +100,7 @@ const generateCardNumbers = () => {
         });
     // console.log(cardNumbers);
   }
+  allCards.push(cardNumbers);
+  console.log(all);
   return cardNumbers;
 };
