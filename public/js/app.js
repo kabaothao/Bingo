@@ -31,6 +31,9 @@ $("#generateCardBtn").click(() => {
           $("#I" + i + "2").append(
             "<div class='number col-" + index + "'><span>" + e + "</span></div>"
           );
+          $(".number").click(function () {
+            $(this).addClass("dobbed");
+          });
           break;
         case 2:
         case 7:
@@ -40,6 +43,9 @@ $("#generateCardBtn").click(() => {
           $("#N" + i + "3").append(
             "<div class='number col-" + index + "'><span>" + e + "</span></div>"
           );
+          $(".number").click(function () {
+            $(this).addClass("dobbed");
+          });
           break;
         case 3:
         case 8:
@@ -49,6 +55,9 @@ $("#generateCardBtn").click(() => {
           $("#G" + i + "4").append(
             "<div class='number col-" + index + "'><span>" + e + "</span></div>"
           );
+          $(".number").click(function () {
+            $(this).addClass("dobbed");
+          });
           break;
         case 4:
         case 9:
@@ -58,6 +67,9 @@ $("#generateCardBtn").click(() => {
           $("#O" + i + "5").append(
             "<div class='number col-" + index + "'><span>" + e + "</span></div>"
           );
+          $(".number").click(function () {
+            $(this).addClass("dobbed");
+          });
           break;
         default:
           console.log("At default");
@@ -101,6 +113,6 @@ const generateCardNumbers = () => {
     // console.log(cardNumbers);
   }
   allCards.push(cardNumbers);
-  console.log(all);
+  console.log(allCards);
   return cardNumbers;
 };
