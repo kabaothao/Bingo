@@ -86,7 +86,7 @@ const generateCardNumbers = () => {
     rowNumbers.push(Math.floor(Math.random() * (15 - 1)) + 1);
     rowNumbers.push(Math.floor(Math.random() * (30 - 16)) + 16);
     if (i === 2) {
-      rowNumbers.push("&#127920");
+      rowNumbers.push("FREE");
     } else {
       rowNumbers.push(Math.floor(Math.random() * (45 - 31)) + 31);
     }
@@ -101,6 +101,6 @@ const generateCardNumbers = () => {
     // console.log(cardNumbers);
   }
   allCards.push(cardNumbers);
-  console.log(all);
+  // console.log(all);
   return cardNumbers;
 };
