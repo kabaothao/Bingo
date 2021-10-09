@@ -20,7 +20,7 @@
 
 .card {
   float: left;
-  width: 100vw;
+  width: 40vw;
   height: auto;
   /* background-color: #446444; */
   background-color: var(--third);
@@ -103,6 +103,8 @@
   background-color: var(--fourth);
 }
 
-@media only screen and (max-width: 600px) {
-
+@media only screen and (max-width: 1024px) {
+.card {
+width: 100vw;
+}
 }
