@@ -1,20 +1,24 @@
-  
-  
-  <div class="flex justify-center font-sans text-5xl font-extrabold text-white ">
-    <header class="sec p-8 fixed" id="bingoCont">B4</header>
+   <div class="flex justify-center font-sans text-5xl font-extrabold text-white ">
+    <header class="sec p-4 fixed rounded-md " id="bingoCont">B4</header>
   </div>
-   <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 mt-8">
-    <button class="bg-fuchsia-500 w-72 w- place-self-start rounded-md flex items-center justify-center text-white text-2xl font-extrabold sec"
+<p  class="text-black text-2xl font-bold">Lobby ID:<br><span id="gameId">1234</span></p>  
+ 
+   <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
+     <div class="grid grid-cols-2">
+   <div>
+    <button class="bg-fuchsia-500 w-3/6 place-self-start rounded-md flex items-center justify-center text-white text-2xl font-extrabold sec"
     id="logoutBtn">Logout</button>
-  <div class="bg-fuchsia-500 rounded-md place-self-end text-white text-5xl font-extrabold fourth lg:place-self-center">
+  <button id="generateCardBtn" class="third text-white text-2xl rounded-md font-bold">Generate card</button>
+   </div>
+  <div class="bg-fuchsia-500 rounded-md place-self-end text-white text-3xl font-extrabold fourth md:place-self-center md:5xl">
     <h2>Timer</h2>
     <div id="timer text-white text-2xl font-extrabold fourth">00:00</div>
   </div>
-
+</div>
     <div
-      class="bg-fuchsia-500 place-self-center  rounded-md items-center justify-center text-white text-2xl font-extrabold third">
-      <div class="clear"></div>
-      <div id="card4" class="card">
+      class="bg-fuchsia-500  rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
+      <div id="card4" class="clear"></div>
+      <div  class="card">
         <div class="headers">
           <div><span>B</span></div>
           <div><span>I</span></div>
@@ -22,7 +26,6 @@
           <div><span>G</span></div>
           <div><span>O</span></div>
         </div>
-        <!-- <div id="numberField1" class="numberField grid grid-cols-5 gap-2"></div> -->
         <div id="B11" class="column 1">
         </div>
         <div id="I12" class="column 2">
@@ -33,13 +36,16 @@
         </div>
         <div id="O15" class="column 5">
         </div>
+
       </div>
       <div class="temp"></div>
+      <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
+   
     </div>
     <div
-      class="bg-fuchsia-500 place-self-center  rounded-md items-center justify-center text-white text-2xl font-extrabold third">
-      <div class="clear"></div>
-      <div id="card4" class="card">
+      class="bg-fuchsia-500   rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
+      <div id="card4" class="clear"></div>
+      <div  class="card">
         <div class="headers">
           <div><span>B</span></div>
           <div><span>I</span></div>
@@ -59,11 +65,12 @@
         </div>
       </div>
       <div class="temp"></div>
+      <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
     </div>
     <div
-      class="bg-fuchsia-500 place-self-center  rounded-md items-center justify-center text-white text-2xl font-extrabold third">
-      <div class="clear"></div>
-      <div id="card4" class="card">
+       class="bg-fuchsia-500   rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
+      <div id="card4" class="clear"></div>
+      <div  class="card">
         <div class="headers">
           <div><span>B</span></div>
           <div><span>I</span></div>
@@ -83,11 +90,12 @@
         </div>
       </div>
       <div class="temp"></div>
+      <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
     </div>
     <div
-      class="bg-fuchsia-500 place-self-center  rounded-md items-center justify-center text-white text-2xl font-extrabold third">
-      <div class="clear"></div>
-      <div id="card4" class="card">
+       class="bg-fuchsia-500   rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
+      <div id="card4" class="clear"></div>
+      <div  class="card">
         <div class="headers">
           <div><span>B</span></div>
           <div><span>I</span></div>
@@ -107,10 +115,11 @@
         </div>
       </div>
       <div class="temp"></div>
+      <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
     </div>
   </div>
-  <button id="generateCardBtn" class="w-64 third text-white">Generate card</button>
   </div>
+
   <!-- js link -->
   <script src="/js/app.js"></script>
   <script src="/js/logout.js"></script>
