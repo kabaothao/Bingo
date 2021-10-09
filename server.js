@@ -14,19 +14,21 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // socket.io nonsense
-const http = require('http');
+const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('chat message', (msg) => {
-    socket.broadcast.emit('chat message', msg);
-    console.log('message: ' + msg);
+io.sockets.on("connection", (socket) => {
+  console.log("a user connected");
+  bingo.initGame(io, socket);
+  socket.on("chat message", (msg) => {
+    socket.emit("chat message", msg);
+    console.log("message: " + msg);
   });
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+
   });
 });
 
