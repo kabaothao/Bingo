@@ -1,7 +1,9 @@
    <div class="flex justify-center font-sans text-5xl font-extrabold text-white ">
     <header class="sec p-4 fixed rounded-md " id="bingoCount"></header>
   </div>
-<p  class="text-black text-2xl font-bold">Lobby ID:<br><span id="gameId">1234</span></p>  
+<p  class="text-black text-2xl font-bold">Room ID:<form id="joinRoomForm" action="">
+      <input id="roomNumberInput" autocomplete="off" /><button id="joinRoomBtn">Send</button>
+    </form></p>  
  
    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
      <div class="grid grid-cols-2">
@@ -121,7 +123,7 @@
   </div>
 
   <!-- js link -->
-  <script src="/js/app.js"></script>
+  {{!-- <script src="/js/app.js"></script> --}}
   <script src="/js/logout.js"></script>
 
   {{!-- socket.io link --}}

@@ -4,7 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 // const helpers = require('./utils/helpers');
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({});
 // const bingo = require("./bingo");
 
 const sequelize = require("./config/connection");
@@ -22,13 +22,19 @@ const io = socketio(server);
 io.sockets.on("connection", (socket) => {
   console.log("user connected on " + socket.id);
   // bingo.initGame(io, socket);
+
   socket.on("chat message", (msg) => {
     socket.emit("chat message", msg);
     console.log("message: " + msg);
   });
-  socket.on("disconnect", () => {
-    console.log("user disconnected from " +socket.id);
 
+  socket.on("join room", (roomName) => {
+    console.log(roomName);
+    socket.join(roomName);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected from " + socket.id);
   });
 });
 
@@ -57,4 +63,3 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
-
