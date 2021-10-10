@@ -101,6 +101,6 @@ const generateCardNumbers = () => {
     // console.log(cardNumbers);
   }
   allCards.push(cardNumbers);
-  // console.log(all);
+  console.log(all);
   return cardNumbers;
 };
