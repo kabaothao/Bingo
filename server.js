@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 3001;
 // socket.io nonsense
 const http = require("http");
 const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+const socketio = require("socket.io");
+const io = socketio(server);
 
 io.sockets.on("connection", (socket) => {
   console.log("user connected on " + socket.id);
@@ -27,7 +27,7 @@ io.sockets.on("connection", (socket) => {
     console.log("message: " + msg);
   });
   socket.on("disconnect", () => {
-    console.log("user disconnected from " + socket.id);
+    console.log("user disconnected from " +socket.id);
 
   });
 });
