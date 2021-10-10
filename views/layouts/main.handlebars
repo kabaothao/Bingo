@@ -1,11 +1,16 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bingo is the Name-O!</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -33,11 +38,10 @@
     </style>
   </head>
   <body style="background-color: var(--main)">
-
-        {{{body}}}
+    {{{body}}}
 
     <ul id="messages">
-      <i id="closeBtn" class="fa fa-times fixed-right mt-1 mr-1 text-white" aria-hidden="true"></i>
+      <i id="closeBtn" class="fa fa-times fixed-right mt-3 mr-8 text-white" aria-hidden="true"></i>
     </ul>
     <form id="form" action="">
       <i id="showComments" class="fa fa-commenting" aria-hidden="true"></i>
@@ -55,16 +59,17 @@
       var form = document.getElementById('form');
       var input = document.getElementById('input');
 
-      form.addEventListener('submit', function(e) {
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
         if (input.value) {
-          socket.emit('chat message', input.value);
-          input.value = '';
+          socket.emit("chat message", input.value);
+          input.value = "";
+          messages.style.display = "inherit";
         }
       });
 
-      socket.on('chat message', function(msg) {
-        var item = document.createElement('li');
+      socket.on("chat message", function (msg) {
+        var item = document.createElement("li");
         item.textContent = msg;
         messages.appendChild(item);
         messages.scrollTo(0, document.body.scrollHeight);
@@ -80,5 +85,5 @@
       });
     </script>
   </body>
-
+  <script src="/js/app.js"></script>
 </html>

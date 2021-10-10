@@ -146,6 +146,8 @@ input {
 }
 #bingo_cards{opacity: 0;}
 
+.btn {background-color: #f15152; color: white; padding:5px 15px; border-radius: 4px;}
+
 .ball {
   border: 1px solid;
   border-radius: 100%;

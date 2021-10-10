@@ -1,5 +1,22 @@
+var socket = io();
+
 var cardNumbers = [];
 var allCards = [];
+let timeLeft = 0;
+let roomName = "";
+
+var messages = document.getElementById("messages");
+var form = document.getElementById("form");
+var input = document.getElementById("input");
+var chatSendBtn = document.getElementById("sendChatBtn");
+var logOutBtn = document.getElementById("logoutBtn");
+var timerEl = document.getElementById("timer");
+
+$("#joinRoomBtn").click((e) => {
+  e.preventDefault();
+  roomName = $("#roomNumberInput").val();
+  socket.emit("join room", roomName);
+});
 
 $("#generateCardBtn").click(() => {
   // event.stopPropagation();
@@ -185,6 +202,110 @@ switch (true) {
     break;
 }
 
-// console.log(`${currentNumber}`);
-//append results to the webpage
-// $('#bingoCount').append(`${currentNumber}`)
+chatSendBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (input.value) {
+    socket.emit("chat message", input.value);
+    input.value = "";
+  }
+});
+
+socket.on("chat message", function (msg) {
+  var item = document.createElement("li");
+  item.textContent = msg;
+  messages.appendChild(item);
+  window.scrollTo(0, document.body.scrollHeight);
+});
+
+socket.on("host", (data) => {
+  console.log(data);
+  if (data.boolean) {
+    Host.isHost = data.boolean;
+  }
+  if (!data.boolean) {
+    console.log("is player!!!!!");
+    Player.isPlayer = true;
+    Player.hasStarted = true;
+    Player.startTime = data.startTime;
+    console.log(Player.startTime);
+  }
+  // console.log(Host.isHost);
+});
+
+socket.on("beginGame", (data) => {
+  console.log(data);
+  if (Host.isHost === true) {
+    console.log(Host.isHost);
+    Host.init();
+    // io.to(roomName).emit();
+  } else {
+    console.log("in else", data);
+
+    Player.init();
+  }
+});
+
+// socket.on("current time", function (data) {
+//   console.log(data);
+//   console.log(Player.hasStarted);
+//   if (!Player.hasStarted) {
+//     Player.startTime = data;
+//     Player.hasStarted = true;
+//   }
+// });
+
+var Host = {
+  isHost: "",
+
+  // socket.on("beginGame", onBeginGame),
+
+  init: function () {
+    Host.timer(99);
+  },
+
+  timer: function (time) {
+    timeLeft = time;
+    console.log(time);
+    timer = setInterval(function () {
+      if (timeLeft > 0) {
+        timeLeft--;
+        timerEl.textContent = "00:" + timeLeft;
+        socket.emit("current time", timeLeft);
+      } else {
+        timerEl.textContent = "00:00";
+        clearInterval(Host.timer);
+        // endGame();
+      }
+    }, 1000);
+  },
+};
+
+//player frelated functions
+var Player = {
+  isPlayer: "",
+  hasStarted: false,
+  startTime: 0,
+
+  init: function () {
+    console.log(Player.startTime);
+    Player.timer(Player.startTime);
+  },
+
+  timer: function (time) {
+    timeLeft = time;
+    console.log(time);
+    timer = setInterval(function () {
+      if (timeLeft > 0) {
+        timeLeft--;
+        timerEl.textContent = "00:" + timeLeft;
+        // socket.emit("current time", timeLeft);
+      } else {
+        timerEl.textContent = "00:00";
+        clearInterval(Host.timer);
+        // endGame();
+      }
+    }, 1000);
+  },
+
+  // getTime:
+};
