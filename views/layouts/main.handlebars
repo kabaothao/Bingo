@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="/socket.io/socket.io.js"></script>
     <style>
       body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -20,25 +24,34 @@
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages { list-style-type: none; margin: 0; padding: 0; background-color:rgba(0, 0, 0, 0.15); height:200px; overflow-y: scroll;position:absolute;bottom:48px;width: 100%; display: none;}
+      #messages > li { padding: 0.5rem 1rem; color:blue }
+      #messages > li:nth-child(odd) { color: red; }
+      #showComments {font-size: 1.5em; margin-top:6px;}
+      form{margin:0px;}
+      .fixed-right{position: fixed; right:0px}
     </style>
   </head>
   <body style="background-color: var(--main)">
 
         {{{body}}}
 
-    <ul id="messages"></ul>
+    <ul id="messages">
+      <i id="closeBtn" class="fa fa-times fixed-right mt-1 mr-1 text-white" aria-hidden="true"></i>
+    </ul>
     <form id="form" action="">
+      <i id="showComments" class="fa fa-commenting" aria-hidden="true"></i>
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
     
     
     <script>
+
       var socket = io();
 
       var messages = document.getElementById('messages');
+      var closeBtn = document.getElementById('closeBtn');
+      var showComments = document.getElementById('showComments');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
 
@@ -54,7 +67,16 @@
         var item = document.createElement('li');
         item.textContent = msg;
         messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
+        messages.scrollTo(0, document.body.scrollHeight);
+        messages.style.display = "inherit";
+      });
+
+      closeBtn.addEventListener("click", function(){
+        messages.style.display = "none";
+      });
+      
+      showComments.addEventListener("click", function(){
+        messages.style.display = "inherit";
       });
     </script>
   </body>

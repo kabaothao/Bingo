@@ -3,8 +3,12 @@ var allCards = [];
 
 $("#generateCardBtn").click(() => {
   // event.stopPropagation();
+  getCard();
+});
+
+let getCard = function () {
   console.log("Im in buildCard");
-  $(".column").empty();
+  generateBingoCards();
 
   for (let i = 1; i < 5; i++) {
     let cardNumbers = generateCardNumbers();
@@ -79,8 +83,28 @@ $("#generateCardBtn").click(() => {
       }
     });
   }
-});
+};
 
+let generateBingoCards = function () {
+  let bingoCardEl = document.getElementById("bingo_card");
+  bingoCardEl.innerHTML = "";
+  for (let i = 1; i < 5; i++) {
+    bingoCardEl.innerHTML += `
+    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2">
+        <div class="text-3xl font-bold ball red">B</div>
+        <div class="text-3xl font-bold ball orange">I</div>
+        <div class="text-3xl font-bold ball blue">N</div>
+        <div class="text-3xl font-bold ball green">G</div>
+        <div class="text-3xl font-bold ball purple">O</div>
+        <div id="B${i}1"></div>
+        <div id="I${i}2"></div>
+        <div id="N${i}3"></div>
+        <div id="G${i}4"></div>
+        <div id="O${i}5"></div>
+      </div>`;
+  }
+  document.getElementById("bingo_cards").style.opacity = 1;
+};
 const isDuplicate = (rowNumbers) => {
   for (let i = 0; i < rowNumbers.length; i++) {
     const duplicateCheck = cardNumbers.some((e) => {
@@ -101,7 +125,9 @@ const generateCardNumbers = () => {
     rowNumbers.push(Math.floor(Math.random() * (15 - 1)) + 1);
     rowNumbers.push(Math.floor(Math.random() * (30 - 16)) + 16);
     if (i === 2) {
-      rowNumbers.push("FREE");
+      rowNumbers.push(
+        '<i style="font-size:1.5em;color:orangered" class="fa fa-star" aria-hidden="true"></i>'
+      );
     } else {
       rowNumbers.push(Math.floor(Math.random() * (45 - 31)) + 31);
     }
@@ -123,34 +149,39 @@ const generateCardNumbers = () => {
 let winner = false;
 
 //numbers array
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75]
+const numbers = [
+  1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+  42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+  61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
+];
 
-//random number generator 
+//random number generator
 function getRandomInt(numbers) {
   return Math.floor(Math.random() * 76);
 }
 
 let currentNumber = getRandomInt(numbers);
 
-switch(true) {
+switch (true) {
   case currentNumber <= 15 && currentNumber > 0:
-    $('#bingoCount').append("B " + currentNumber);
+    $("#bingoCount").append("B " + currentNumber);
     break;
   case currentNumber < 31:
-  $('#bingoCount').append("I " + currentNumber);
+    $("#bingoCount").append("I " + currentNumber);
     break;
   case currentNumber < 46:
-  $('#bingoCount').append("N " + currentNumber);
+    $("#bingoCount").append("N " + currentNumber);
     break;
   case currentNumber < 61:
-  $('#bingoCount').append("G " + currentNumber);
+    $("#bingoCount").append("G " + currentNumber);
     break;
   case currentNumber < 76:
-  $('#bingoCount').append("O " + currentNumber);
+    $("#bingoCount").append("O " + currentNumber);
     break;
-  default: 
-   alert ("Out of numbers")
-  // console.log('default');
+  default:
+    alert("Out of numbers");
+    // console.log('default');
     break;
 }
 

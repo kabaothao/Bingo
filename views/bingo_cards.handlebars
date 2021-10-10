@@ -1,47 +1,28 @@
-   <div class="flex justify-center font-sans text-5xl font-extrabold text-white ">
-    <header class="sec p-4 fixed rounded-md " id="bingoCount"></header>
-  </div>
-<p  class="text-black text-2xl font-bold">Lobby ID:<br><span id="gameId">1234</span></p>  
- 
-   <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
-     <div class="grid grid-cols-2">
-   <div>
-    <button class="bg-fuchsia-500 w-3/6 place-self-start rounded-md flex items-center justify-center text-white text-2xl font-extrabold sec"
-    id="logoutBtn">Logout</button>
-  <button id="generateCardBtn" class="third text-white text-2xl rounded-md font-bold">Generate card</button>
-   </div>
-  <div class="bg-fuchsia-500 rounded-md place-self-end text-white text-3xl font-extrabold fourth md:place-self-center md:5xl">
-    <h2>Timer</h2>
-    <div id="timer text-white text-2xl font-extrabold fourth">00:00</div>
-  </div>
-</div>
-    <div
-      class="bg-fuchsia-500  rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
-      <div id="card4" class="clear"></div>
-      <div  class="card">
-        <div class="headers">
-          <div><span>B</span></div>
-          <div><span>I</span></div>
-          <div><span>N</span></div>
-          <div><span>G</span></div>
-          <div><span>O</span></div>
-        </div>
-        <div id="B11" class="column 1">
-        </div>
-        <div id="I12" class="column 2">
-        </div>
-        <div id="N13" class="column 3">
-        </div>
-        <div id="G14" class="column 4">
-        </div>
-        <div id="O15" class="column 5">
-        </div>
-
-      </div>
-      <div class="temp"></div>
-      <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
-   
+  
+<div id="bingoCount" style="width:60px;height:60px;margin:15px;position:absolute;font-size:15px;line-height:2.3;" class="font-bold ball black"></div>
+<div class="grid">
+    <div class="text-right mr-2 mt-2">
+      <button id="generateCardBtn" class="third text-white text-2xl rounded-md font-bold pl-2 pr-2 pt-2 pb-2">Generate card</button>
+      <button class="third text-white text-2xl rounded-md font-bold pl-2 pr-2 pt-2 pb-2"
+      id="logoutBtn">Logout</button>
     </div>
+</div>
+  <p  class="mt-2 ml-2 text-black text-2xl font-bold text-center mt-3 mb-3">
+    Room ID: <span id="gameId">1234</span>
+    <div class="text-center">
+      <h2 class="bg-fuchsia-500 rounded-md place-self-end text-white text-3xl font-extrabold fourth" style="width:300px;margin:auto;">
+        Timer 
+        <span id="timer">00:00</span>
+      </h2>
+    </div>
+  </p>  
+
+  <div id="bingo_cards">
+    <div id="bingo_card" class="grid lg:grid-cols-3 mt-8"></div>
+  </div>
+
+    <!-- I DON'T GIVE AF ABOUT ANYTHING BELOW THIS LINE-->
+   {{!-- <div class="grid ml-2 mt-8">
     <div
       class="bg-fuchsia-500   rounded-md items-center justify-center text-white text-2xl font-extrabold third sm:place-self-center">
       <div id="card4" class="clear"></div>
@@ -117,7 +98,7 @@
       <div class="temp"></div>
       <button id="bingoOneBtn" class="bg-fuchsia-500 h-12 w-2/3 ml-10 rounded-md text-white text-2xl font-extrabold fourth sm:ml-16 md:ml-20 lg:ml-28">BINGO!</button>
     </div>
-  </div>
+  </div> --}}
   </div>
 
   <!-- js link -->

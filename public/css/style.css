@@ -73,7 +73,15 @@
 }
 
 .dobbed {
-  background-color: rgba(255, 84, 78, 0.795);
+  background-color: red;
+}
+
+.dobbed span {
+  color: white;
+}
+
+.number span {
+  cursor: pointer;
 }
 
 .numberField {
@@ -106,7 +114,6 @@
   background-color: var(--fourth);
 }
 
-
 @media only screen and (max-width: 1024px) {
   .card {
     width: 100vw;
@@ -115,7 +122,7 @@
 
 @media only screen and (max-width: 768px) {
   .card {
-  width: 90vw;
+    width: 90vw;
   }
 }
 
@@ -125,3 +132,57 @@
   }
 }
 
+input {
+  width: 100%;
+  padding: 0px 10px;
+}
+
+#logoutBtn {
+  background-color: brown;
+}
+#bingo_card {
+  min-width: 320px;
+  margin: 15px auto;
+}
+#bingo_cards{opacity: 0;}
+
+.ball {
+  border: 1px solid;
+  border-radius: 100%;
+  margin-bottom: 15px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.number {
+  padding: 10px 0px;
+}
+.number span {
+  font-size: 1.5em;
+}
+
+.red {
+  color: white;
+  background-color: red;
+}
+.orange {
+  color: white;
+  background-color: orange;
+}
+.blue {
+  color: white;
+  background-color: #6868fe;
+}
+.green {
+  color: white;
+  background-color: #1ecd1e;
+}
+.purple {
+  color: white;
+  background-color: d31fd3;
+}
+.black {
+  color: white;
+  background-color: #0b2181;
+  padding: 12px 12px;
+}
