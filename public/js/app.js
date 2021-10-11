@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io.connect();
 
 var cardNumbers = [];
 var allCards = [];
