@@ -4,6 +4,7 @@ var cardNumbers = [];
 var allCards = [];
 let timeLeft = 0;
 let roomName = "";
+let checkedNumbers = [];
 const calledNumbers = [];
 let numbers = [
   1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
@@ -11,6 +12,20 @@ let numbers = [
   42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
   61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
 ];
+let winningMatches = [
+      [0, 6, 12, 18, 19],
+      [4, 8, 12, 16, 20],
+      [0, 1, 2, 3, 4],
+      [5, 6, 7, 8, 9],
+      [10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19],
+      [20, 21, 22, 23, 24],
+      [0, 5, 10, 15, 20],
+      [1, 6, 11, 16, 21],
+      [2, 7, 12, 17, 22],
+      [3, 8, 13, 18, 23],
+      [4, 9, 14, 19, 24],
+    ];
 
 var messages = document.getElementById("messages");
 var form = document.getElementById("form");
@@ -30,6 +45,32 @@ $("#generateCardBtn").click(() => {
   // event.stopPropagation();
   getCard();
 });
+function contains(a,b) {
+  let counter = 0;
+  for(var i = 0; i < b.length; i++) {;
+      if(a.includes(b[i])) counter++;
+  }
+  if(counter === b.length) return true;
+  return false;
+}
+
+let checkForWinningMatches = function(){
+  console.log(checkedNumbers);
+  for(let i = 0; i < winningMatches.length; i++){
+    if(contains(checkedNumbers, winningMatches[i])){
+      winner = true;
+    }
+  }
+}
+
+let checkCard = function(item){
+  checkedNumbers.push(item);
+  checkForWinningMatches();
+
+  $(".number").click(function () {
+    $(this).addClass("dobbed");
+  });
+}
 
 let getCard = function () {
   console.log("Im in buildCard");
@@ -49,11 +90,10 @@ let getCard = function () {
         case 20:
           console.log("#A" + i + "1");
           $("#B" + i + "1").append(
-            "<div class='number col-" + index + "'><span>" + e + "</span></div>"
+            `<div onclick="checkCard(${index})" class="number col-${index}">
+              <span>${e}</span>
+            </div>`
           );
-          $(".number").click(function () {
-            $(this).addClass("dobbed");
-          });
           break;
         case 1:
         case 6:
@@ -61,11 +101,10 @@ let getCard = function () {
         case 16:
         case 21:
           $("#I" + i + "2").append(
-            "<div class='number col-" + index + "'><span>" + e + "</span></div>"
+            `<div onclick="checkCard(${index})" class="number col-${index}">
+            <span>${e}</span>
+          </div>`
           );
-          $(".number").click(function () {
-            $(this).addClass("dobbed");
-          });
           break;
         case 2:
         case 7:
@@ -73,11 +112,10 @@ let getCard = function () {
         case 17:
         case 22:
           $("#N" + i + "3").append(
-            "<div class='number col-" + index + "'><span>" + e + "</span></div>"
+            `<div onclick="checkCard(${index})" class="number col-${index}">
+              <span>${e}</span>
+            </div>`
           );
-          $(".number").click(function () {
-            $(this).addClass("dobbed");
-          });
           break;
         case 3:
         case 8:
@@ -85,11 +123,10 @@ let getCard = function () {
         case 18:
         case 23:
           $("#G" + i + "4").append(
-            "<div class='number col-" + index + "'><span>" + e + "</span></div>"
+            `<div onclick="checkCard(${index})" class="number col-${index}">
+              <span>${e}</span>
+            </div>`
           );
-          $(".number").click(function () {
-            $(this).addClass("dobbed");
-          });
           break;
         case 4:
         case 9:
@@ -97,11 +134,10 @@ let getCard = function () {
         case 19:
         case 24:
           $("#O" + i + "5").append(
-            "<div class='number col-" + index + "'><span>" + e + "</span></div>"
+            `<div onclick="checkCard(${index})" class="number col-${index}">
+              <span>${e}</span>
+            </div>`
           );
-          $(".number").click(function () {
-            $(this).addClass("dobbed");
-          });
           break;
         default:
           console.log("At default");
@@ -176,6 +212,9 @@ const generateCardNumbers = () => {
 };
 
 let winner = false;
+document.getElementById("bingo_btn").addEventListener("click", function () {
+  if(winner) alert('BINGO!');
+});
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
