@@ -13,6 +13,7 @@ var signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      localStorage.setItem("username", username);
       document.location.replace("/");
     } else {
       alert("Failed to sign up!");
@@ -33,6 +34,7 @@ var loginFormHandler = async (event) => {
 
     if (response.ok) {
       document.location.replace("/");
+      localStorage.setItem("username", username);
     } else {
       alert("Failed to log in!");
     }

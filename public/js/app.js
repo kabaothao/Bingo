@@ -5,7 +5,7 @@ var allCards = [];
 let timeLeft = 0;
 let roomName = "";
 let checkedNumbers = [];
-const calledNumbers = [];
+let calledNumbers = [];
 let numbers = [
   1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
@@ -34,6 +34,11 @@ var chatSendBtn = document.getElementById("sendChatBtn");
 var logOutBtn = document.getElementById("logoutBtn");
 var timerEl = document.getElementById("timer");
 var ballholderEl = document.getElementById("ball_holder");
+var roomid = document.getElementById("roomid");
+
+if(roomid){
+  roomid.innerHTML = `Lobby ${localStorage.getItem("roomid")}`;
+}
 
 $("#joinRoomBtn").click((e) => {
   e.preventDefault();
@@ -223,14 +228,56 @@ const generateCardNumbers = () => {
 };
 
 let winner = false;
-document.getElementById("bingo_btn").addEventListener("click", function () {
-  winner ? alert('BINGO!') : alert('No BINGO Cheater!');
+document.getElementById("bingo_btn")?.addEventListener("click", function () {
+  //if (winner) { 
+    let username = localStorage.getItem("username");debugger;
+    alert('BINGO!');
+    updateBingoDB(calledNumbers, username);
+  //}
+  //else { alert('No BINGO Cheater!');}
 });
+
+let getBallDrawned = async function(){
+  let id = localStorage.getItem("roomid");
+  let isHost = localStorage.getItem("ishost");
+  const response = await fetch(`/api/lobby/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if(response.ok){
+    let result = await response.json();
+    if (result.winner){
+      alert("Game Over! "+ result.winner + "is our BINGO Winner, Chicken Dinner!"); 
+      winner = true;
+      return;
+    }
+    if(isHost === "true"){return;}
+    calledNumbers = result.balls_drawn.split(',').map(Number);
+    ballholderEl.innerHTML = '';
+    for(let i = 0; i < calledNumbers.length; i++){
+      if(calledNumbers[i] !== 12){
+        ballholderEl.innerHTML += `
+          ${getBall(calledNumbers[i])}
+        `
+      }
+    }
+    //show ball after a ball is drawn from the pool
+    ballholderEl.style.display = "flex";
+    ballholderEl.scrollTo(0, document.body.scrollWidth);
+
+    setInterval(function(){
+      getBallDrawned();
+    }, 5000)
+  }
+}
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit("chat message", input.value);
+    let username = localStorage.getItem("username");
+    socket.emit("chat message", username + ': ' + input.value);
     input.value = "";
     messages.style.display = "inherit";
   }
@@ -238,7 +285,7 @@ form.addEventListener("submit", function (e) {
 
 socket.on("chat message", function (msg) {
   var item = document.createElement("li");
-  item.textContent = msg;
+  item.innerHTML = `<i class="fa fa-user" aria-hidden="true"></i> ${msg}`;
   messages.appendChild(item);
   messages.scrollTo(0, document.body.scrollHeight);
   messages.style.display = "inherit";
@@ -269,14 +316,14 @@ socket.on("host", (data) => {
 
 socket.on("beginGame", (data) => {
   console.log(data);
+  localStorage.getItem("ishost") === "true" ? Host.isHost = true : Host.isHost = false;
   if (Host.isHost === true) {
     console.log(Host.isHost);
     Host.init();
     // io.to(roomName).emit();
   } else {
-    console.log("in else", data);
-
-    Player.init();
+    console.log("in else", data);debugger;
+    getBallDrawned();
   }
 });
 
@@ -295,6 +342,24 @@ let getBall = function(n){
       return `<a id="bingoCount" class="font-bold ball black">O ${n}</a>`;
   } else {
     console.log("Out of numbers");
+  }
+}
+
+let updateBingoDB = async function(balls, name){
+  let id = localStorage.getItem('roomid');
+  let putBody = {};
+  if(name){putBody = { "balls_drawn": balls.toString(), "winner": name}
+  }else{ putBody = { "balls_drawn": balls.toString()}
+  }
+  const response = await fetch(`/api/lobby/${id}`, {
+    method: "PUT",
+    body:  JSON.stringify(putBody),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if(response){
+    getBallDrawned();
   }
 }
 
@@ -323,6 +388,7 @@ var Host = {
     }, 1000);
   },
   callBall: function () {
+    if(numbers.length === 0){ return; }
     let numbersIndex = Math.floor(Math.random() * numbers.length);
 
     calledNumbers.unshift(numbers.splice(numbersIndex, 1)[0]);
@@ -332,15 +398,21 @@ var Host = {
     console.log("numbers len", numbers.length);
 
     let currentNumber = calledNumbers[0];
+
+    if(winner){return;}
+    updateBingoDB(calledNumbers.toString(), null);
+    //postNumbers(calledNumbers.toString());
     // ***********************************************************************************
     // ****SEND currentNumber OUT THROUGH SOCKET THEN USE SWITCH IN LISTENER FUNCTION*****
       // ************************************************************************************/
-    ballholderEl.innerHTML = '';
-    for(let i = 0; i < calledNumbers.length; i++){
-      if(calledNumbers[i] !== 12){
-        ballholderEl.innerHTML += `
-          ${getBall(calledNumbers[i])}
-        `
+    if(currentNumber){
+      ballholderEl.innerHTML = '';
+      for(let i = 0; i < calledNumbers.length; i++){
+        if(calledNumbers[i] !== 12){
+          ballholderEl.innerHTML += `
+            ${getBall(calledNumbers[i])}
+          `
+        }
       }
     }
     //show ball after a ball is drawn from the pool
@@ -378,53 +450,4 @@ var Player = {
     }, 1000);
   },
 
-  // getTime:
 };
-
-// $(function () {
-//   //array for all cards
-//   var allCards = [];
-//   // Set winning combinations to array
-//   var winners = [
-//     [0, 6, 12, 18, 19],
-//     [4, 8, 12, 16, 20],
-//     [0, 1, 2, 3, 4],
-//     [5, 6, 7, 8, 9],
-//     [10, 11, 12, 13, 14],
-//     [15, 16, 17, 18, 19],
-//     [20, 21, 22, 23, 24],
-//     [0, 5, 10, 15, 20],
-//     [1, 6, 11, 16, 21],
-//     [2, 7, 12, 17, 22],
-//     [3, 8, 13, 18, 23],
-//     [4, 9, 14, 19, 24],
-//   ];
-//   var possibleWinners = winners.length;
-
-//   // Initialize selected array with 12 freebie
-//   // Push clicked object ID to 'selected' array
-//   // selected.push($(this).attr('.number'));
-//   // Compare winners array to selected array for matches
-//   for (var i = 0; i < possibleWinners; i++) {
-//     var cellExists = 0;
-
-//     for (var j = 0; j < 5; j++) {
-//       if ($.inArray(winners[i][j], allCards) > -1) {
-//         cellExists++;
-//       }
-//     }
-//     // If all 5 winner cells exist in selected array alert success message
-//     if (cellExists == 5) {
-//       socket.emit;
-//       alert("Winner!");
-//     }
-//   }
-//   // Count the number of squares clicked
-//   $(".number")
-//     .data("clicked", 0)
-//     .click(function () {
-//       var counter = $(this).data("clicked");
-//       $(this).data("clicked", counter++);
-//       console.log(counter);
-//     });
-// });
