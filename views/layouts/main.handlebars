@@ -3,9 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bingo is the Name-O!</title>
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -22,68 +20,107 @@
     />
     <script src="/socket.io/socket.io.js"></script>
     <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
-      #input:focus { outline: none; }
-      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
-
-      #messages { list-style-type: none; margin: 0; padding: 0; background-color:rgba(0, 0, 0, 0.15); height:200px; overflow-y: scroll;position:absolute;bottom:48px;width: 100%; display: none;}
-      #messages > li { padding: 0.5rem 1rem; color:blue }
-      #messages > li:nth-child(odd) { color: red; }
-      #showComments {font-size: 1.5em; margin-top:6px;}
-      form{margin:0px;}
-      .fixed-right{position: fixed; right:0px}
+      body {
+        margin: 0;
+        padding-bottom: 3rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+      #form {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.25rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 3rem;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+      }
+      #input {
+        border: none;
+        padding: 0 1rem;
+        flex-grow: 1;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+      #input:focus {
+        outline: none;
+      }
+      #form > button {
+        background: #333;
+        border: none;
+        padding: 0 1rem;
+        margin: 0.25rem;
+        border-radius: 3px;
+        outline: none;
+        color: #fff;
+      }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0.15);
+        height: 200px;
+        overflow-y: scroll;
+        position: absolute;
+        bottom: 48px;
+        width: 100%;
+        display: none;
+      }
+      #messages > li {
+        padding: 0.5rem 1rem;
+        color: blue;
+      }
+      #messages > li:nth-child(odd) {
+        color: red;
+      }
+      #showComments {
+        font-size: 1.5em;
+        margin-top: 6px;
+      }
+      form {
+        margin: 0px;
+      }
+      .fixed-right {
+        position: fixed;
+        right: 0px;
+      }
     </style>
   </head>
   <body style="background-color: var(--main)">
     {{{body}}}
 
     <ul id="messages">
-      <i id="closeBtn" class="fa fa-times fixed-right mt-3 mr-8 text-white" aria-hidden="true"></i>
+      <i
+        id="closeBtn"
+        class="fa fa-times fixed-right mt-3 mr-8 text-white"
+        aria-hidden="true"
+      ></i>
     </ul>
     <form id="form" action="">
       <i id="showComments" class="fa fa-commenting" aria-hidden="true"></i>
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
-    
-    
-    <script>
 
-      var socket = io();
+    <!-- <script>
 
-      var messages = document.getElementById('messages');
-      var closeBtn = document.getElementById('closeBtn');
-      var showComments = document.getElementById('showComments');
-      var form = document.getElementById('form');
-      var input = document.getElementById('input');
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit("chat message", input.value);
-          input.value = "";
-          messages.style.display = "inherit";
-        }
-      });
-
-      socket.on("chat message", function (msg) {
-        var item = document.createElement("li");
-        item.textContent = msg;
-        messages.appendChild(item);
-        messages.scrollTo(0, document.body.scrollHeight);
-        messages.style.display = "inherit";
-      });
-
-      closeBtn.addEventListener("click", function(){
-        messages.style.display = "none";
-      });
-      
-      showComments.addEventListener("click", function(){
-        messages.style.display = "inherit";
-      });
-    </script> 
+      var socket = io(); var messages = document.getElementById('messages'); var
+      closeBtn = document.getElementById('closeBtn'); var showComments =
+      document.getElementById('showComments'); var form =
+      document.getElementById('form'); var input =
+      document.getElementById('input'); form.addEventListener("submit", function
+      (e) { e.preventDefault(); if (input.value) { socket.emit("chat message",
+      input.value); input.value = ""; messages.style.display = "inherit"; } });
+      socket.on("chat message", function (msg) { var item =
+      document.createElement("li"); item.textContent = msg;
+      messages.appendChild(item); messages.scrollTo(0,
+      document.body.scrollHeight); messages.style.display = "inherit"; });
+      closeBtn.addEventListener("click", function(){ messages.style.display =
+      "none"; }); showComments.addEventListener("click", function(){
+      messages.style.display = "inherit"; });
+    </script> -->
   </body>
   <script src="/js/app.js"></script>
 </html>

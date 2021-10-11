@@ -122,6 +122,7 @@ let generateBingoCards = function () {
   }
   document.getElementById("bingo_cards").style.opacity = 1;
 };
+
 const isDuplicate = (rowNumbers) => {
   for (let i = 0; i < rowNumbers.length; i++) {
     const duplicateCheck = cardNumbers.some((e) => {
@@ -173,40 +174,32 @@ const numbers = [
   61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
 ];
 
-//random number generator
-function getRandomInt(numbers) {
-  return Math.floor(Math.random() * 76);
-}
+// chatSendBtn.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   if (input.value) {
+//     socket.emit("chat message", input.value);
+//     input.value = "";
+//   }
+// });
 
-let currentNumber = getRandomInt(numbers);
+// socket.on("chat message", function (msg) {
+//   var item = document.createElement("li");
+//   item.textContent = msg;
+//   messages.appendChild(item);
+//   window.scrollTo(0, document.body.scrollHeight);
+// });
+var messages = document.getElementById("messages");
+var closeBtn = document.getElementById("closeBtn");
+var showComments = document.getElementById("showComments");
+var form = document.getElementById("form");
+var input = document.getElementById("input");
 
-switch (true) {
-  case currentNumber <= 15 && currentNumber > 0:
-    $("#bingoCount").append("B " + currentNumber);
-    break;
-  case currentNumber < 31:
-    $("#bingoCount").append("I " + currentNumber);
-    break;
-  case currentNumber < 46:
-    $("#bingoCount").append("N " + currentNumber);
-    break;
-  case currentNumber < 61:
-    $("#bingoCount").append("G " + currentNumber);
-    break;
-  case currentNumber < 76:
-    $("#bingoCount").append("O " + currentNumber);
-    break;
-  default:
-    alert("Out of numbers");
-    // console.log('default');
-    break;
-}
-
-chatSendBtn.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (input.value) {
     socket.emit("chat message", input.value);
     input.value = "";
+    messages.style.display = "inherit";
   }
 });
 
@@ -214,7 +207,16 @@ socket.on("chat message", function (msg) {
   var item = document.createElement("li");
   item.textContent = msg;
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  messages.scrollTo(0, document.body.scrollHeight);
+  messages.style.display = "inherit";
+});
+
+closeBtn.addEventListener("click", function () {
+  messages.style.display = "none";
+});
+
+showComments.addEventListener("click", function () {
+  messages.style.display = "inherit";
 });
 
 socket.on("host", (data) => {
@@ -245,22 +247,12 @@ socket.on("beginGame", (data) => {
   }
 });
 
-// socket.on("current time", function (data) {
-//   console.log(data);
-//   console.log(Player.hasStarted);
-//   if (!Player.hasStarted) {
-//     Player.startTime = data;
-//     Player.hasStarted = true;
-//   }
-// });
-
 var Host = {
   isHost: "",
 
-  // socket.on("beginGame", onBeginGame),
-
   init: function () {
-    Host.timer(99);
+    Host.timer(60);
+    while()
   },
 
   timer: function (time) {
@@ -274,7 +266,7 @@ var Host = {
       } else {
         timerEl.textContent = "00:00";
         clearInterval(Host.timer);
-        // endGame();
+        Host.callBall();
       }
     }, 1000);
   },
