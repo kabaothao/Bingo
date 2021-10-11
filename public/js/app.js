@@ -228,7 +228,7 @@ var Host = {
   name: "",
 
   init: function () {
-    Host.timer(1);
+    Host.timer(60);
     //while (!gameOver) {}
   },
 
