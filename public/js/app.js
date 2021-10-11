@@ -279,8 +279,7 @@ socket.on("beginGame", (data) => {
 });
 
 let getBall = function(n){
-  if(n === 12){}
-  else if (n < 10) {
+  if (n < 10) {
       return `<a id="bingoCount" class="font-bold ball black">B 0${n}</a>`;
   } else if (n <=15) {
       return `<a id="bingoCount" class="font-bold ball black">B ${n}</a>`;
@@ -336,9 +335,11 @@ var Host = {
       // ************************************************************************************/
     ballholderEl.innerHTML = '';
     for(let i = 0; i < calledNumbers.length; i++){
-      ballholderEl.innerHTML += `
-        ${getBall(calledNumbers[i])}
-      `
+      if(calledNumbers[i] !== 12){
+        ballholderEl.innerHTML += `
+          ${getBall(calledNumbers[i])}
+        `
+      }
     }
     //show ball after a ball is drawn from the pool
     ballholderEl.style.display = "flex";
