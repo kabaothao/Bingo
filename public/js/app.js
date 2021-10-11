@@ -222,7 +222,7 @@ const generateCardNumbers = () => {
 
 let winner = false;
 document.getElementById("bingo_btn").addEventListener("click", function () {
-  if(winner) alert('BINGO!');
+  winner ? alert('BINGO!') : alert('No BINGO Cheater!');
 });
 
 form.addEventListener("submit", function (e) {
@@ -278,6 +278,25 @@ socket.on("beginGame", (data) => {
   }
 });
 
+let getBall = function(n){
+  if(n === 12){}
+  else if (n < 10) {
+      return `<a id="bingoCount" class="font-bold ball black">B 0${n}</a>`;
+  } else if (n <=15) {
+      return `<a id="bingoCount" class="font-bold ball black">B ${n}</a>`;
+  } else if(n < 31){
+      return `<a id="bingoCount" class="font-bold ball black">I ${n}</a>`;
+  } else if(n < 46){
+     return `<a id="bingoCount" class="font-bold ball black">N ${n}</a>`;
+  } else if( n < 61){
+      return `<a id="bingoCount" class="font-bold ball black">G ${n}</a>`;
+  } else if( n < 76){
+      return `<a id="bingoCount" class="font-bold ball black">O ${n}</a>`;
+  } else {
+    console.log("Out of numbers");
+  }
+}
+
 var Host = {
   isHost: "",
   name: "",
@@ -315,23 +334,12 @@ var Host = {
     // ***********************************************************************************
     // ****SEND currentNumber OUT THROUGH SOCKET THEN USE SWITCH IN LISTENER FUNCTION*****
       // ************************************************************************************/
-    if(currentNumber === 12){}
-    else if (currentNumber < 10) {
-        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B 0${currentNumber}</a>`;
-    } else if (currentNumber <=15) {
-        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B ${currentNumber}</a>`;
-    } else if(currentNumber < 31){
-        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">I ${currentNumber}</a>`;
-    } else if(currentNumber < 46){
-        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">N ${currentNumber}</a>`;
-    } else if( currentNumber < 61){
-      ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">G ${currentNumber}</a>`;
-    } else if( currentNumber < 76){
-      ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">O ${currentNumber}</a>`;
-    } else {
-      console.log("Out of numbers");
+    ballholderEl.innerHTML = '';
+    for(let i = 0; i < calledNumbers.length; i++){
+      ballholderEl.innerHTML += `
+        ${getBall(calledNumbers[i])}
+      `
     }
-
     //show ball after a ball is drawn from the pool
     ballholderEl.style.display = "flex";
     ballholderEl.scrollTo(0, document.body.scrollWidth);
