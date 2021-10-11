@@ -194,7 +194,7 @@ input {
 }
 
 #bingoCount{
-  width:60px;height:60px;margin:15px;position:absolute;font-size:15px;line-height:2.3;
+  margin:15px 10px 15px 5px;line-height:2.3;
 }
 
 body {
@@ -267,3 +267,26 @@ form {
   position: fixed;
   right: 0px;
 }
+
+#ball_holder{
+  width: 100%;
+  position: fixed;
+  height: 90px;
+  background-color: transparent;
+  overflow: auto;
+  white-space: nowrap;
+  display: none;
+}
+
+#ball_placeholder{
+  width: 100%;
+  position: fixed;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  white-space: nowrap;
+}
+
+#bingo_btn{
+  position: fixed; bottom:75px; width:75px; height:75px; border-radius:100%; background-color:#2942af;color:white;right:15px;justify-content:center;align-items:center;font-weight:bolder;cursor:pointer;display: none;
+  border: 3px dashed white;}
