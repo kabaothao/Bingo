@@ -18,6 +18,7 @@ var input = document.getElementById("input");
 var chatSendBtn = document.getElementById("sendChatBtn");
 var logOutBtn = document.getElementById("logoutBtn");
 var timerEl = document.getElementById("timer");
+var ballholderEl = document.getElementById("ball_holder");
 
 $("#joinRoomBtn").click((e) => {
   e.preventDefault();
@@ -265,32 +266,26 @@ var Host = {
     let currentNumber = calledNumbers[0];
     // ***********************************************************************************
     // ****SEND currentNumber OUT THROUGH SOCKET THEN USE SWITCH IN LISTENER FUNCTION*****
-    // ************************************************************************************/
-    
-    switch (currentNumber) {
-      case 0 <= 15:
-             $("#bingoCount").append("B " + currentNumber);
-        break;
-      case 15 < &&  31:
-        $("#bingoCount").append("I " + currentNumber);
-        break;
-      case 31 46:
-        $("#bingoCount").append("N " + currentNumber);
-        break;
-      case currentNumber < 61:
-        $("#bingoCount").append("G " + currentNumber);
-        break;
-      case currentNumber < 76:
-        $("#bingoCount").append("O " + currentNumber);
-        break;
-      default:
-        console.log("Out of numbers");
-        // console.log('default');
-        break;
+      // ************************************************************************************/
+    if (currentNumber < 10) {
+        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B 0${currentNumber}</a>`;
+    } else if (currentNumber <=15) {
+        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B ${currentNumber}</a>`;
+    } else if(currentNumber < 31){
+        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">I ${currentNumber}</a>`;
+    } else if(currentNumber < 46){
+        ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">N ${currentNumber}</a>`;
+    } else if( currentNumber < 61){
+      ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">G ${currentNumber}</a>`;
+    } else if( currentNumber < 76){
+      ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">O ${currentNumber}</a>`;
+    } else {
+      console.log("Out of numbers");
     }
 
     //show ball after a ball is drawn from the pool
-    document.getElementById("ball_holder").style.display = "flex";
+    ballholderEl.style.display = "flex";
+    ballholderEl.scrollTo(0, document.body.scrollWidth);
     Host.timer(5);
   },
 };
