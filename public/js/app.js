@@ -20,8 +20,12 @@ $("#joinRoomBtn").click((e) => {
 
 $("#generateCardBtn").click(() => {
   // event.stopPropagation();
+  getCard();
+});
+
+let getCard = function () {
   console.log("Im in buildCard");
-  $(".column").empty();
+  generateBingoCards();
 
   for (let i = 1; i < 5; i++) {
     let cardNumbers = generateCardNumbers();
@@ -96,8 +100,28 @@ $("#generateCardBtn").click(() => {
       }
     });
   }
-});
+};
 
+let generateBingoCards = function () {
+  let bingoCardEl = document.getElementById("bingo_card");
+  bingoCardEl.innerHTML = "";
+  for (let i = 1; i < 5; i++) {
+    bingoCardEl.innerHTML += `
+    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2">
+        <div class="text-3xl font-bold ball red">B</div>
+        <div class="text-3xl font-bold ball orange">I</div>
+        <div class="text-3xl font-bold ball blue">N</div>
+        <div class="text-3xl font-bold ball green">G</div>
+        <div class="text-3xl font-bold ball purple">O</div>
+        <div id="B${i}1"></div>
+        <div id="I${i}2"></div>
+        <div id="N${i}3"></div>
+        <div id="G${i}4"></div>
+        <div id="O${i}5"></div>
+      </div>`;
+  }
+  document.getElementById("bingo_cards").style.opacity = 1;
+};
 const isDuplicate = (rowNumbers) => {
   for (let i = 0; i < rowNumbers.length; i++) {
     const duplicateCheck = cardNumbers.some((e) => {
@@ -118,7 +142,9 @@ const generateCardNumbers = () => {
     rowNumbers.push(Math.floor(Math.random() * (15 - 1)) + 1);
     rowNumbers.push(Math.floor(Math.random() * (30 - 16)) + 16);
     if (i === 2) {
-      rowNumbers.push("FREE");
+      rowNumbers.push(
+        '<i style="font-size:1.5em;color:orangered" class="fa fa-star" aria-hidden="true"></i>'
+      );
     } else {
       rowNumbers.push(Math.floor(Math.random() * (45 - 31)) + 31);
     }
