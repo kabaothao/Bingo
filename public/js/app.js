@@ -165,42 +165,6 @@ const generateCardNumbers = () => {
 
 let winner = false;
 
-//numbers array
-const numbers = [
-  1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-  23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
-  42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-  61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
-];
-
-//random number generator
-function getRandomInt(numbers) {
-  return Math.floor(Math.random() * 76);
-}
-
-let currentNumber = getRandomInt(numbers);
-
-switch (true) {
-  case currentNumber <= 15 && currentNumber > 0:
-    $("#bingoCount").append("B " + currentNumber);
-    break;
-  case currentNumber < 31:
-    $("#bingoCount").append("I " + currentNumber);
-    break;
-  case currentNumber < 46:
-    $("#bingoCount").append("N " + currentNumber);
-    break;
-  case currentNumber < 61:
-    $("#bingoCount").append("G " + currentNumber);
-    break;
-  case currentNumber < 76:
-    $("#bingoCount").append("O " + currentNumber);
-    break;
-  default:
-    alert("Out of numbers");
-    // console.log('default');
-    break;
-}
 
 chatSendBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -264,6 +228,7 @@ var Host = {
   },
 
   timer: function (time) {
+
     timeLeft = time;
     console.log(time);
     timer = setInterval(function () {
@@ -278,6 +243,46 @@ var Host = {
       }
     }, 1000);
   },
+  callBall: function() {
+
+  //numbers array
+  const numbers = [
+    1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+    23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+    42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
+  ];
+
+  //random number generator
+  function getRandomInt(numbers) {
+    return Math.floor(Math.random() * 76);
+  }
+
+  let currentNumber = getRandomInt(numbers);
+
+  switch (true) {
+    case currentNumber <= 15 && currentNumber > 0:
+      $("#bingoCount").append("B " + currentNumber);
+      break;
+    case currentNumber < 31:
+      $("#bingoCount").append("I " + currentNumber);
+      break;
+    case currentNumber < 46:
+      $("#bingoCount").append("N " + currentNumber);
+      break;
+    case currentNumber < 61:
+      $("#bingoCount").append("G " + currentNumber);
+      break;
+    case currentNumber < 76:
+      $("#bingoCount").append("O " + currentNumber);
+      break;
+    default:
+      alert("Out of numbers");
+      // console.log('default');
+      break;
+  }
+
+  }
 };
 
 //player frelated functions
@@ -305,7 +310,70 @@ var Player = {
         // endGame();
       }
     }, 1000);
+
   },
 
   // getTime:
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(function() {
+//   //array for all cards
+//   var allCards = [[]];
+//   // Set winning combinations to array
+//   var winners = [
+//       [0,6,12,18,19],
+//       [4,8,12,16,20],
+//       [0,1,2,3,4],
+//       [5,6,7,8,9],
+//       [10,11,12,13,14],
+//       [15,16,17,18,19],
+//       [20,21,22,23,24],
+//       [0,5,10,15,20],
+//       [1,6,11,16,21],
+//       [2,7,12,17,22],
+//       [3,8,13,18,23],
+//       [4,9,14,19,24]
+//   ];
+//   var possibleWinners = winners.length;
+
+//   // Initialize selected array with 12 freebie
+//   var selected = ['12'];
+//     // Push clicked object ID to 'selected' array
+//     // selected.push($(this).attr('.number'));
+//     // Compare winners array to selected array for matches
+//     for(var i = 0; i < possibleWinners; i++) {
+//         var cellExists = 0;
+
+//         for(var j = 0; j < 5; j++) {
+//             if($.inArray(winners[i][j], selected) > -1) {
+//                 cellExists++;
+//             }
+//         }
+//         // If all 5 winner cells exist in selected array alert success message
+//         if(cellExists == 5) {
+//             alert('Winner!');
+//         }
+//     };
+//   // Count the number of squares clicked
+//   $('.number').data('clicked', 0)
+//       .click(function(){
+//           var counter = $(this).data('clicked');
+//           $(this).data('clicked', counter ++);
+//           console.log(counter);
+//       })
+// });
