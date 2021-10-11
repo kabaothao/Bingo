@@ -4,6 +4,7 @@ var cardNumbers = [];
 var allCards = [];
 let timeLeft = 0;
 let roomName = "";
+const calledNumbers = [];
 
 var messages = document.getElementById("messages");
 var form = document.getElementById("form");
@@ -107,18 +108,20 @@ let generateBingoCards = function () {
   bingoCardEl.innerHTML = "";
   for (let i = 1; i < 5; i++) {
     bingoCardEl.innerHTML += `
-    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2">
-        <div class="text-3xl font-bold ball red">B</div>
-        <div class="text-3xl font-bold ball orange">I</div>
-        <div class="text-3xl font-bold ball blue">N</div>
-        <div class="text-3xl font-bold ball green">G</div>
-        <div class="text-3xl font-bold ball purple">O</div>
-        <div id="B${i}1"></div>
-        <div id="I${i}2"></div>
-        <div id="N${i}3"></div>
-        <div id="G${i}4"></div>
-        <div id="O${i}5"></div>
-      </div>`;
+    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2 pt-4 pl-1 pr-1 pb-1" 
+      style="background-color:cadetblue;border-radius:4px;">
+      <div class="text-3xl font-bold ball red">B</div>
+      <div class="text-3xl font-bold ball orange">I</div>
+      <div class="text-3xl font-bold ball blue">N</div>
+      <div class="text-3xl font-bold ball green">G</div>
+      <div class="text-3xl font-bold ball purple">O</div>
+      <div id="B${i}1"></div>
+      <div id="I${i}2"></div>
+      <div id="N${i}3"></div>
+      <div id="G${i}4"></div>
+      <div id="O${i}5"></div>
+    </div>
+      `;
   }
   document.getElementById("bingo_cards").style.opacity = 1;
 };
@@ -165,8 +168,7 @@ const generateCardNumbers = () => {
 
 let winner = false;
 
-
-chatSendBtn.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (input.value) {
     socket.emit("chat message", input.value);
@@ -220,15 +222,16 @@ socket.on("beginGame", (data) => {
 
 var Host = {
   isHost: "",
+  name: "",
 
   // socket.on("beginGame", onBeginGame),
 
   init: function () {
-    Host.timer(99);
+    Host.timer(60);
+    while (!gameOver) {}
   },
 
   timer: function (time) {
-
     timeLeft = time;
     console.log(time);
     timer = setInterval(function () {
@@ -243,46 +246,49 @@ var Host = {
       }
     }, 1000);
   },
-  callBall: function() {
+  callBall: function () {
+    //numbers array
+    const numbers = [
+      1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+      40, 41, 42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57,
+      58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
+    ];
 
-  //numbers array
-  const numbers = [
-    1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-    23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
-    42, 43, 44, 45, 56, 57, 58, 59, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-    61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
-  ];
+    //random number generator
+    const currentNumber = (numbers) => {
+      return Math.floor(Math.random() * numbers.length);
+    };
+    //use slice to cut number out of numbers and place in calledNumbers array
+    calledNumbers.push(numbers.splice(currentNumber, 1));
 
-  //random number generator
-  function getRandomInt(numbers) {
-    return Math.floor(Math.random() * 76);
-  }
+    // let currentNumber = getRandomInt(numbers);
 
-  let currentNumber = getRandomInt(numbers);
-
-  switch (true) {
-    case currentNumber <= 15 && currentNumber > 0:
-      $("#bingoCount").append("B " + currentNumber);
-      break;
-    case currentNumber < 31:
-      $("#bingoCount").append("I " + currentNumber);
-      break;
-    case currentNumber < 46:
-      $("#bingoCount").append("N " + currentNumber);
-      break;
-    case currentNumber < 61:
-      $("#bingoCount").append("G " + currentNumber);
-      break;
-    case currentNumber < 76:
-      $("#bingoCount").append("O " + currentNumber);
-      break;
-    default:
-      alert("Out of numbers");
-      // console.log('default');
-      break;
-  }
-
-  }
+    // ***********************************************************************************
+    // ****SEND currentNumber OUT THROUGH SOCKET THEN USE SWITCH IN LISTENER FUNCTION*****
+    //************************************************************************************/
+    switch (true) {
+      case currentNumber <= 15 && currentNumber > 0:
+        $("#bingoCount").append("B " + currentNumber);
+        break;
+      case currentNumber < 31:
+        $("#bingoCount").append("I " + currentNumber);
+        break;
+      case currentNumber < 46:
+        $("#bingoCount").append("N " + currentNumber);
+        break;
+      case currentNumber < 61:
+        $("#bingoCount").append("G " + currentNumber);
+        break;
+      case currentNumber < 76:
+        $("#bingoCount").append("O " + currentNumber);
+        break;
+      default:
+        alert("Out of numbers");
+        // console.log('default');
+        break;
+    }
+  },
 };
 
 //player frelated functions
@@ -290,6 +296,7 @@ var Player = {
   isPlayer: "",
   hasStarted: false,
   startTime: 0,
+  name: "",
 
   init: function () {
     console.log(Player.startTime);
@@ -310,70 +317,55 @@ var Player = {
         // endGame();
       }
     }, 1000);
-
   },
 
   // getTime:
 };
 
+$(function () {
+  //array for all cards
+  var allCards = [[]];
+  // Set winning combinations to array
+  var winners = [
+    [0, 6, 12, 18, 19],
+    [4, 8, 12, 16, 20],
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9],
+    [10, 11, 12, 13, 14],
+    [15, 16, 17, 18, 19],
+    [20, 21, 22, 23, 24],
+    [0, 5, 10, 15, 20],
+    [1, 6, 11, 16, 21],
+    [2, 7, 12, 17, 22],
+    [3, 8, 13, 18, 23],
+    [4, 9, 14, 19, 24],
+  ];
+  var possibleWinners = winners.length;
 
+  // Initialize selected array with 12 freebie
+  // Push clicked object ID to 'selected' array
+  // selected.push($(this).attr('.number'));
+  // Compare winners array to selected array for matches
+  for (var i = 0; i < possibleWinners; i++) {
+    var cellExists = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(function() {
-//   //array for all cards
-//   var allCards = [[]];
-//   // Set winning combinations to array
-//   var winners = [
-//       [0,6,12,18,19],
-//       [4,8,12,16,20],
-//       [0,1,2,3,4],
-//       [5,6,7,8,9],
-//       [10,11,12,13,14],
-//       [15,16,17,18,19],
-//       [20,21,22,23,24],
-//       [0,5,10,15,20],
-//       [1,6,11,16,21],
-//       [2,7,12,17,22],
-//       [3,8,13,18,23],
-//       [4,9,14,19,24]
-//   ];
-//   var possibleWinners = winners.length;
-
-//   // Initialize selected array with 12 freebie
-//   var selected = ['12'];
-//     // Push clicked object ID to 'selected' array
-//     // selected.push($(this).attr('.number'));
-//     // Compare winners array to selected array for matches
-//     for(var i = 0; i < possibleWinners; i++) {
-//         var cellExists = 0;
-
-//         for(var j = 0; j < 5; j++) {
-//             if($.inArray(winners[i][j], selected) > -1) {
-//                 cellExists++;
-//             }
-//         }
-//         // If all 5 winner cells exist in selected array alert success message
-//         if(cellExists == 5) {
-//             alert('Winner!');
-//         }
-//     };
-//   // Count the number of squares clicked
-//   $('.number').data('clicked', 0)
-//       .click(function(){
-//           var counter = $(this).data('clicked');
-//           $(this).data('clicked', counter ++);
-//           console.log(counter);
-//       })
-// });
+    for (var j = 0; j < 5; j++) {
+      if ($.inArray(winners[i][j], allCards) > -1) {
+        cellExists++;
+      }
+    }
+    // If all 5 winner cells exist in selected array alert success message
+    if (cellExists == 5) {
+      socket.emit;
+      alert("Winner!");
+    }
+  }
+  // Count the number of squares clicked
+  $(".number")
+    .data("clicked", 0)
+    .click(function () {
+      var counter = $(this).data("clicked");
+      $(this).data("clicked", counter++);
+      console.log(counter);
+    });
+});
