@@ -13,16 +13,16 @@ let numbers = [
   61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
 ];
 let winningMatches = [
-      [0, 6, 12, 18, 19],
-      [4, 8, 12, 16, 20],
+      [0, 6, 18, 19],
+      [4, 8, 16, 20],
       [0, 1, 2, 3, 4],
       [5, 6, 7, 8, 9],
-      [10, 11, 12, 13, 14],
+      [10, 11, 13, 14],
       [15, 16, 17, 18, 19],
       [20, 21, 22, 23, 24],
       [0, 5, 10, 15, 20],
       [1, 6, 11, 16, 21],
-      [2, 7, 12, 17, 22],
+      [2, 7, 17, 22],
       [3, 8, 13, 18, 23],
       [4, 9, 14, 19, 24],
     ];
@@ -63,13 +63,16 @@ let checkForWinningMatches = function(){
   }
 }
 
-let checkCard = function(item){
-  checkedNumbers.push(item);
-  checkForWinningMatches();
-
-  $(".number").click(function () {
-    $(this).addClass("dobbed");
-  });
+let checkCard = function(item, ballNumber){
+  console.log("clicked on "+ ballNumber);
+  if(!calledNumbers.includes(ballNumber)){
+    alert("This ball has not been drawn!"); 
+    return;
+  } else {
+    checkedNumbers.push(item);
+    checkForWinningMatches();
+    $("#slot"+ballNumber).addClass("dobbed");
+  }
 }
 
 let getCard = function () {
@@ -90,7 +93,7 @@ let getCard = function () {
         case 20:
           console.log("#A" + i + "1");
           $("#B" + i + "1").append(
-            `<div onclick="checkCard(${index})" class="number col-${index}">
+            `<div id="slot${e}" onclick="checkCard(${index}, ${e})" class="number col-${index}">
               <span>${e}</span>
             </div>`
           );
@@ -101,18 +104,24 @@ let getCard = function () {
         case 16:
         case 21:
           $("#I" + i + "2").append(
-            `<div onclick="checkCard(${index})" class="number col-${index}">
+            `<div id="slot${e}" onclick="checkCard(${index}, ${e})" class="number col-${index}">
             <span>${e}</span>
           </div>`
           );
           break;
         case 2:
         case 7:
-        case 12:
         case 17:
         case 22:
           $("#N" + i + "3").append(
-            `<div onclick="checkCard(${index})" class="number col-${index}">
+            `<div id="slot${e}" class="number col-${index}" onclick="checkCard(${index}, ${e})" >
+              <span>${e}</span>
+            </div>`
+          );
+          break;
+        case 12:
+          $("#N" + i + "3").append(
+            `<div class="number col-${index}">
               <span>${e}</span>
             </div>`
           );
@@ -123,7 +132,7 @@ let getCard = function () {
         case 18:
         case 23:
           $("#G" + i + "4").append(
-            `<div onclick="checkCard(${index})" class="number col-${index}">
+            `<div id="slot${e}" onclick="checkCard(${index}, ${e})" class="number col-${index}">
               <span>${e}</span>
             </div>`
           );
@@ -134,7 +143,7 @@ let getCard = function () {
         case 19:
         case 24:
           $("#O" + i + "5").append(
-            `<div onclick="checkCard(${index})" class="number col-${index}">
+            `<div id="slot${e}" onclick="checkCard(${index}, ${e})" class="number col-${index}">
               <span>${e}</span>
             </div>`
           );
@@ -149,7 +158,7 @@ let getCard = function () {
 let generateBingoCards = function () {
   let bingoCardEl = document.getElementById("bingo_card");
   bingoCardEl.innerHTML = "";
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 2; i++) {
     bingoCardEl.innerHTML += `
     <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2 pt-4 pl-1 pr-1 pb-1" 
       style="background-color:cadetblue;border-radius:4px;">
@@ -169,6 +178,7 @@ let generateBingoCards = function () {
   document.getElementById("bingo_cards").style.opacity = 1;
   document.getElementById("bingo_btn").style.display = "flex";
 };
+
 const isDuplicate = (rowNumbers) => {
   for (let i = 0; i < rowNumbers.length; i++) {
     const duplicateCheck = cardNumbers.some((e) => {
@@ -220,6 +230,7 @@ form.addEventListener("submit", function (e) {
   if (input.value) {
     socket.emit("chat message", input.value);
     input.value = "";
+    messages.style.display = "inherit";
   }
 });
 
@@ -227,7 +238,16 @@ socket.on("chat message", function (msg) {
   var item = document.createElement("li");
   item.textContent = msg;
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  messages.scrollTo(0, document.body.scrollHeight);
+  messages.style.display = "inherit";
+});
+
+closeBtn.addEventListener("click", function () {
+  messages.style.display = "none";
+});
+
+showComments.addEventListener("click", function () {
+  messages.style.display = "inherit";
 });
 
 socket.on("host", (data) => {
@@ -257,15 +277,6 @@ socket.on("beginGame", (data) => {
     Player.init();
   }
 });
-
-// socket.on("current time", function (data) {
-//   console.log(data);
-//   console.log(Player.hasStarted);
-//   if (!Player.hasStarted) {
-//     Player.startTime = data;
-//     Player.hasStarted = true;
-//   }
-// });
 
 var Host = {
   isHost: "",
@@ -304,7 +315,8 @@ var Host = {
     // ***********************************************************************************
     // ****SEND currentNumber OUT THROUGH SOCKET THEN USE SWITCH IN LISTENER FUNCTION*****
       // ************************************************************************************/
-    if (currentNumber < 10) {
+    if(currentNumber === 12){}
+    else if (currentNumber < 10) {
         ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B 0${currentNumber}</a>`;
     } else if (currentNumber <=15) {
         ballholderEl.innerHTML += `<a id="bingoCount" class="font-bold ball black">B ${currentNumber}</a>`;
