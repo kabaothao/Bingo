@@ -50,10 +50,10 @@ io.sockets.on("connection", (socket) => {
       socket.emit("beginGame", { status: "game started" });
     } else {
       let startTime = 0;
-      // await socket.on("current time", (data) => {
-      //   console.log(data);
-      //   startTime = data;
-      // });
+      await socket.on("current time", (data) => {
+        console.log(data);
+        startTime = data;
+      });
       await socket.emit("host", {
         boolean: false,
         message: "you're a player",

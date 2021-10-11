@@ -122,6 +122,7 @@ let generateBingoCards = function () {
   }
   document.getElementById("bingo_cards").style.opacity = 1;
 };
+
 const isDuplicate = (rowNumbers) => {
   for (let i = 0; i < rowNumbers.length; i++) {
     const duplicateCheck = cardNumbers.some((e) => {
@@ -166,11 +167,12 @@ const generateCardNumbers = () => {
 let winner = false;
 
 
-chatSendBtn.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (input.value) {
     socket.emit("chat message", input.value);
     input.value = "";
+    messages.style.display = "inherit";
   }
 });
 
@@ -178,7 +180,16 @@ socket.on("chat message", function (msg) {
   var item = document.createElement("li");
   item.textContent = msg;
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  messages.scrollTo(0, document.body.scrollHeight);
+  messages.style.display = "inherit";
+});
+
+closeBtn.addEventListener("click", function () {
+  messages.style.display = "none";
+});
+
+showComments.addEventListener("click", function () {
+  messages.style.display = "inherit";
 });
 
 socket.on("host", (data) => {
@@ -209,22 +220,12 @@ socket.on("beginGame", (data) => {
   }
 });
 
-// socket.on("current time", function (data) {
-//   console.log(data);
-//   console.log(Player.hasStarted);
-//   if (!Player.hasStarted) {
-//     Player.startTime = data;
-//     Player.hasStarted = true;
-//   }
-// });
-
 var Host = {
   isHost: "",
 
-  // socket.on("beginGame", onBeginGame),
-
   init: function () {
-    Host.timer(99);
+    Host.timer(60);
+    while()
   },
 
   timer: function (time) {
@@ -239,7 +240,7 @@ var Host = {
       } else {
         timerEl.textContent = "00:00";
         clearInterval(Host.timer);
-        // endGame();
+        Host.callBall();
       }
     }, 1000);
   },
