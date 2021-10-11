@@ -71,7 +71,9 @@ let checkCard = function(item, ballNumber){
   } else {
     checkedNumbers.push(item);
     checkForWinningMatches();
-    $("#slot"+ballNumber).addClass("dobbed");
+    document.getElementById("slot"+ballNumber).innerHTML = `
+    <i class="fa fa-circle dobbed" style="font-size:2.26em" aria-hidden="true"></i>
+    `;
   }
 }
 
