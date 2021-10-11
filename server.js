@@ -16,19 +16,19 @@ const PORT = process.env.PORT || 3001;
 // socket.io nonsense
 const http = require("http");
 const server = http.createServer(app);
-const socketio = require("socket.io");
-const io = socketio(server);
+const socket = require("socket.io");
+const io = socket(server);
 let users = [];
 // let roomName = "";
 
-io.sockets.on("connection", (socket) => {
+io.on("connection", (socket) => {
   currentTime = 99;
 
   console.log("user connected on " + socket.id);
   // bingo.initGame(io, socket);
 
   socket.on("chat message", (msg) => {
-    socket.emit("chat message", msg);
+    io.emit("chat message", msg);
     console.log("message: " + msg);
   });
 
