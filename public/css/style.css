@@ -248,10 +248,7 @@ body {
 }
 #messages > li {
   padding: 0.5rem 1rem;
-  color: blue;
-}
-#messages > li:nth-child(odd) {
-  color: red;
+  color: white;
 }
 #messages::-webkit-scrollbar {
   width: 0px;

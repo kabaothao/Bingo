@@ -20,13 +20,13 @@ GameRoom.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    winner_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    winner: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-    admin_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    admin: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
