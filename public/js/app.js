@@ -124,6 +124,7 @@ let generateBingoCards = function () {
       `;
   }
   document.getElementById("bingo_cards").style.opacity = 1;
+  document.getElementById("bingo_btn").style.display = 'flex';
 };
 
 const isDuplicate = (rowNumbers) => {
@@ -227,8 +228,8 @@ var Host = {
   name: "",
 
   init: function () {
-    Host.timer(60);
-    while (!gameOver) {}
+    Host.timer(1);
+    //while (!gameOver) {}
   },
 
   timer: function (time) {
@@ -284,10 +285,13 @@ var Host = {
         $("#bingoCount").append("O " + currentNumber);
         break;
       default:
-        alert("Out of numbers");
+        console.log("Out of numbers");
         // console.log('default');
         break;
     }
+
+    //show ball after a ball is drawn from the pool
+    document.getElementById("ball_holder").style.display = "flex";
   },
 };
 
@@ -324,7 +328,7 @@ var Player = {
 
 $(function () {
   //array for all cards
-  var allCards = [asgfafsdgsdhfdgh];
+  var allCards = [];
   // Set winning combinations to array
   var winners = [
     [0, 6, 12, 18, 19],
