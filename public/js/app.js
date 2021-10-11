@@ -108,18 +108,20 @@ let generateBingoCards = function () {
   bingoCardEl.innerHTML = "";
   for (let i = 1; i < 5; i++) {
     bingoCardEl.innerHTML += `
-    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2">
-        <div class="text-3xl font-bold ball red">B</div>
-        <div class="text-3xl font-bold ball orange">I</div>
-        <div class="text-3xl font-bold ball blue">N</div>
-        <div class="text-3xl font-bold ball green">G</div>
-        <div class="text-3xl font-bold ball purple">O</div>
-        <div id="B${i}1"></div>
-        <div id="I${i}2"></div>
-        <div id="N${i}3"></div>
-        <div id="G${i}4"></div>
-        <div id="O${i}5"></div>
-      </div>`;
+    <div id="bingo_card" class="grid grid-cols-5 mt-3 text-center mr-2 pt-4 pl-1 pr-1 pb-1" 
+      style="background-color:cadetblue;border-radius:4px;">
+      <div class="text-3xl font-bold ball red">B</div>
+      <div class="text-3xl font-bold ball orange">I</div>
+      <div class="text-3xl font-bold ball blue">N</div>
+      <div class="text-3xl font-bold ball green">G</div>
+      <div class="text-3xl font-bold ball purple">O</div>
+      <div id="B${i}1"></div>
+      <div id="I${i}2"></div>
+      <div id="N${i}3"></div>
+      <div id="G${i}4"></div>
+      <div id="O${i}5"></div>
+    </div>
+      `;
   }
   document.getElementById("bingo_cards").style.opacity = 1;
 };
