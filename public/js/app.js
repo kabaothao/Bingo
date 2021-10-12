@@ -229,12 +229,11 @@ const generateCardNumbers = () => {
 
 let winner = false;
 document.getElementById("bingo_btn")?.addEventListener("click", function () {
-  //if (winner) { 
-    let username = localStorage.getItem("username");debugger;
-    alert('BINGO!');
+  if (winner) { 
+    let username = localStorage.getItem("username");
     updateBingoDB(calledNumbers, username);
-  //}
-  //else { alert('No BINGO Cheater!');}
+  }
+  else { alert('No BINGO Cheater!');}
 });
 
 let getBallDrawned = async function(){
@@ -249,7 +248,11 @@ let getBallDrawned = async function(){
   if(response.ok){
     let result = await response.json();
     if (result.winner){
-      alert("Game Over! "+ result.winner + "is our BINGO Winner, Chicken Dinner!"); 
+      ballholderEl.innerHTML = `
+        <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+          Game Over! <br> ${result.winner} is our BINGO Winner, Chicken Dinner!
+        </div>
+      ` 
       winner = true;
       return;
     }
@@ -267,9 +270,9 @@ let getBallDrawned = async function(){
     ballholderEl.style.display = "flex";
     ballholderEl.scrollTo(0, document.body.scrollWidth);
 
-    setInterval(function(){
+    setTimeout(() => {
       getBallDrawned();
-    }, 5000)
+    }, 5000);
   }
 }
 
@@ -322,7 +325,7 @@ socket.on("beginGame", (data) => {
     Host.init();
     // io.to(roomName).emit();
   } else {
-    console.log("in else", data);debugger;
+    console.log("in else", data);
     getBallDrawned();
   }
 });
