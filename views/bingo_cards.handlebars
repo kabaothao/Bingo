@@ -3,35 +3,34 @@
 
 <div class="grid" style="padding-top: 105px;">
     <div class="text-right mr-2 mt-2">
-      <button id="generateCardBtn" class="third text-white text-2xl rounded-md font-bold pl-2 pr-2 pt-2 pb-2">Generate card</button>
+      <button id="generateCardBtn" class="fourth text-white text-2xl rounded-md font-bold pl-2 pr-2 pt-2 pb-2">Start Game</button>
       <button class="third text-white text-2xl rounded-md font-bold pl-2 pr-2 pt-2 pb-2"
       id="logoutBtn">Logout</button>
     </div>
 </div>
   <p  class="mt-2 ml-2 text-black text-2xl font-bold text-center mt-3 mb-3">
     {{!-- Room ID: <span id="gameId">1234</span> --}}
-    <div class="grid grid-cols-2">
-      <div>
-        <p id="roomid" class="text-black text-2xl font-bold text-right">Room ID:</p>
-      </div>
-      <!--<div class="ml-1">
-        <form id="joinRoomForm" action="">
-          <input id="roomNumberInput" autocomplete="off" style="height:32px" />
-        </form>
-      </div>-->
-      <div class="ml-1">
-        <button class="btn" id="joinRoomBtn"><i class="fa fa-paper-plane pt-1 pb-1 pl-3 pr-3" aria-hidden="true"></i></button>
-      </div>
-    </div> 
-    <div class="text-center mt-3">
-      <h2 class="bg-fuchsia-500 rounded-md place-self-end text-white text-3xl font-extrabold fourth" style="width:300px;margin:auto;">
-        Timer 
-        <span id="timer">00:00</span>
-      </h2>
+    <div style="text-align-last: center;">
+      <p id="roomid" class="text-black text-2xl font-bold text-right">Room ID:</p>
     </div>
+    <!--<div class="ml-1">
+      <form id="joinRoomForm" action="">
+        <input id="roomNumberInput" autocomplete="off" style="height:32px" />
+      </form>
+    </div>-->
   </p>  
+  
+  <div class="ml-1" style="display:none;">
+    <button class="btn" id="joinRoomBtn"><i class="fa fa-paper-plane pt-1 pb-1 pl-3 pr-3" aria-hidden="true"></i></button>
+  </div>
+  <div class="text-center mt-3">
+    <h2 class="bg-fuchsia-500 rounded-md place-self-end text-white text-3xl font-extrabold fourth" style="width:300px;margin:auto;display:none">
+      Timer 
+      <span id="timer">00:00</span>
+    </h2>
+  </div>
 
-  <div id="bingo_cards">
+  <div id="bingo_cards" style="margin-bottom:120px;">
     <div id="bingo_card" class="grid mt-8"></div>
   </div>
 

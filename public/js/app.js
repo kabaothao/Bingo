@@ -40,14 +40,13 @@ if(roomid){
   roomid.innerHTML = `Lobby ${localStorage.getItem("roomid")}`;
 }
 
-$("#joinRoomBtn").click((e) => {
-  e.preventDefault();
+let joinRoom = function(){
   roomName = $("#roomNumberInput").val();
   socket.emit("join room", roomName);
-});
+}
 
 $("#generateCardBtn").click(() => {
-  // event.stopPropagation();
+  joinRoom();
   getCard();
 });
 function contains(a,b) {
@@ -71,7 +70,11 @@ let checkForWinningMatches = function(){
 let checkCard = function(item, ballNumber){
   console.log("clicked on "+ ballNumber);
   if(!calledNumbers.includes(ballNumber)){
-    alert("This ball has not been drawn!"); 
+    ballholderEl.innerHTML = `
+    <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+      This ball has not been drawn, you cheater!
+    </div>
+  ` 
     return;
   } else {
     checkedNumbers.push(item);
@@ -233,7 +236,13 @@ document.getElementById("bingo_btn")?.addEventListener("click", function () {
     let username = localStorage.getItem("username");
     updateBingoDB(calledNumbers, username);
   }
-  else { alert('No BINGO Cheater!');}
+  else { 
+    ballholderEl.innerHTML = `
+    <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+      You don't have BINGO!
+    </div>
+  ` 
+  }
 });
 
 let getBallDrawned = async function(){
