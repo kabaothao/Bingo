@@ -9,7 +9,6 @@ Online Bingo Game
   - [Usage](#Usage)
   - [Demo](#Demo)
   - [Contributors](#Contributors)
-  - [Credits](#Credits)
   - [Contacts](#Contacts)
   
 
@@ -49,7 +48,11 @@ When a player has placed 5 markers in a row (horizontally, vertically or diagona
 
 ## Demo 
 
-  * ![demo_still](public/assets/images/demo.png)
+  * ![demo_still](public/assets/demo.png)
+  * ![demo_still](public/assets/demo2.png)
+  * ![demo_still](public/assets/demo3.png)
+  * ![demo_still](public/assets/demo4.png)
+  * ![demo_still](public/assets/demo5.png)
 
   
 ## Contributors
@@ -59,8 +62,6 @@ When a player has placed 5 markers in a row (horizontally, vertically or diagona
 * Jesse Erickson
 * Jose Avalos
 * Kabao Thao
-
-## Credits
 
 
 ## Contacts
@@ -73,4 +74,5 @@ When a player has placed 5 markers in a row (horizontally, vertically or diagona
    - https://github.com/AlenaReh
 
   * Connect With Us On Linkedin: 
+   - https://www.linkedin.com/in/kabaothao/
    - https://www.linkedin.com/in/alena-rehberger/
