@@ -272,7 +272,7 @@ let getBallDrawned = async function(){
 
     setTimeout(() => {
       getBallDrawned();
-    }, 5000);
+    }, 3000);
   }
 }
 
