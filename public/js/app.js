@@ -40,14 +40,13 @@ if(roomid){
   roomid.innerHTML = `Lobby ${localStorage.getItem("roomid")}`;
 }
 
-$("#joinRoomBtn").click((e) => {
-  e.preventDefault();
+let joinRoom = function(){
   roomName = $("#roomNumberInput").val();
   socket.emit("join room", roomName);
-});
+}
 
 $("#generateCardBtn").click(() => {
-  // event.stopPropagation();
+  joinRoom();
   getCard();
 });
 function contains(a,b) {
@@ -71,7 +70,11 @@ let checkForWinningMatches = function(){
 let checkCard = function(item, ballNumber){
   console.log("clicked on "+ ballNumber);
   if(!calledNumbers.includes(ballNumber)){
-    alert("This ball has not been drawn!"); 
+    ballholderEl.innerHTML = `
+    <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+      This ball has not been drawn, you cheater!
+    </div>
+  ` 
     return;
   } else {
     checkedNumbers.push(item);
@@ -229,12 +232,17 @@ const generateCardNumbers = () => {
 
 let winner = false;
 document.getElementById("bingo_btn")?.addEventListener("click", function () {
-  //if (winner) { 
-    let username = localStorage.getItem("username");debugger;
-    alert('BINGO!');
+  if (winner) { 
+    let username = localStorage.getItem("username");
     updateBingoDB(calledNumbers, username);
-  //}
-  //else { alert('No BINGO Cheater!');}
+  }
+  else { 
+    ballholderEl.innerHTML = `
+    <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+      You don't have BINGO!
+    </div>
+  ` 
+  }
 });
 
 let getBallDrawned = async function(){
@@ -249,7 +257,11 @@ let getBallDrawned = async function(){
   if(response.ok){
     let result = await response.json();
     if (result.winner){
-      alert("Game Over! "+ result.winner + "is our BINGO Winner, Chicken Dinner!"); 
+      ballholderEl.innerHTML = `
+        <div style="align-self:center;margin-left:15px;color:white;font-size:18x;">
+          Game Over! <br> ${result.winner} is our BINGO Winner, Chicken Dinner!
+        </div>
+      ` 
       winner = true;
       return;
     }
@@ -267,9 +279,9 @@ let getBallDrawned = async function(){
     ballholderEl.style.display = "flex";
     ballholderEl.scrollTo(0, document.body.scrollWidth);
 
-    setInterval(function(){
+    setTimeout(() => {
       getBallDrawned();
-    }, 5000)
+    }, 3000);
   }
 }
 
@@ -322,7 +334,7 @@ socket.on("beginGame", (data) => {
     Host.init();
     // io.to(roomName).emit();
   } else {
-    console.log("in else", data);debugger;
+    console.log("in else", data);
     getBallDrawned();
   }
 });
